@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package framespace;
+import "framespace.proto";
+
+/** Initial method definitions for FrameSpace **/
+
+service FrameSpaceService {
+	rpc SearchAxis(AxisSearchQuery) returns (AxisSearchQuery)
+}
+
+message AxisSearchQuery {
+	repeated string name = 1;
+}
