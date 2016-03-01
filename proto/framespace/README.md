@@ -3,7 +3,7 @@
 
 ### Conceptual Overview of the Axis, KeySpace, and Keys Heirarchy
 
-![keyspace_img](https://github.com/jacmarjorie/ccc_api/tree/framespace_init/proto/framespace/keyspace.png)
+![keyspace](https://cloud.githubusercontent.com/assets/6373975/13445120/459ffa58-dfbf-11e5-8249-8d94968856d4.png)
 
 ### General Overview of Design
 
