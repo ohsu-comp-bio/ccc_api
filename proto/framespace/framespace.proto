@@ -6,7 +6,7 @@ package framespace;
 * Top level description of a dimension: 
 * Samples, Genomic Labels, Clinical Terms, etc.
 **/
-message AxisSpace {
+message Axis {
 	string name = 1;
 	string description = 2;
 }
@@ -27,7 +27,7 @@ message Key {
 **/
 message KeySpace {
 	int32 id = 1;
-	AxisSpace axis_space = 2;
+	Axis axis = 2;
 	repeated Key keys = 3;
 	map<string, string> metadata = 4;
 }
