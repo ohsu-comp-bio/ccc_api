@@ -80,15 +80,6 @@ message DataFrame {
 	repeated Vector contents = 5;
 }
 
-/** A Project has a set of keys associated with it.
-* Select project, access keyspace
-**/
-message Project {
-	string name = 1;
-	int32 keySpaceId = 2;
-	map<string, string> metadata = 3;
-}
-
 /** special key: cell map **/
 message KeyCellMap {
 	Key key = 1;
