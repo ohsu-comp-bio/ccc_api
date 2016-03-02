@@ -4,13 +4,15 @@ export GOPATH
 PATH := ${PATH}:$(shell pwd)/bin
 export PATH
 
-proxy:
-	protoc --python_out ccc_client -I proto  --grpc_out=ccc_client --plugin=protoc-gen-grpc=`which grpc_python_plugin`  `./get_api_proto_files.sh`
+PROTO_INC= -I ./ -I $(GOPATH)/src/github.com/gengo/grpc-gateway/third_party/googleapis/
+
+all: install_tools python_client swagger
+
+python_client:
+	protoc $(PROTO_INC) --python_out ccc_client --grpc_out=ccc_client --plugin=protoc-gen-grpc=`which grpc_python_plugin`  `./get_api_proto_files.sh`
 
 swagger: FORCE
-	protoc \
-	  -I ./ \
-		-I $(GOPATH)/src/github.com/gengo/grpc-gateway/third_party/googleapis/ \
+	protoc $(PROTO_INC) \
  		--swagger_out=logtostderr=true:swagger \
  		`./get_api_proto_files.sh`
 
