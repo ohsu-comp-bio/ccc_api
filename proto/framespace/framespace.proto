@@ -2,6 +2,8 @@
 
 syntax = "proto3";
 
+import "google/api/annotations.proto";
+
 /**
  * Represents a single key space of a particular axis type.
  */
@@ -60,6 +62,16 @@ message AxisSearchQuery {
 }
 
 service DataFrameService {
-    rpc GetAxisTypes(NameList) returns (NameList);
-    rpc SearchAxis(AxisSearchQuery) returns (NameList);
+    rpc GetAxisTypes(NameList) returns (NameList) {
+      option (google.api.http) = {
+        post: "/v1/frame/GetAxisTypes"
+        body: "*"
+      };
+    };
+    rpc SearchAxis(AxisSearchQuery) returns (NameList) {
+      option (google.api.http) = {
+        post: "/v1/frame/SearchAxis"
+        body: "*"
+      };
+    }
 }
