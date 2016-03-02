@@ -22,11 +22,11 @@ service FrameSpaceService {
     };
   };	
 
-  rpc SearchAxis(AxisSearchQuery) returns (AxisSearchQuery) {
-    option(google.api.http) = {
-      post: "v1/frame/SearchAxis"
+  rpc GetAxisTypes(AxisSearchQuery) returns (AxisSearchQuery) {
+    option (google.api.http) = {
+      post: "/v1/frame/SearchAxis"
       body: "*"
-	};
-  };
+    };
+  };	
 
 }
