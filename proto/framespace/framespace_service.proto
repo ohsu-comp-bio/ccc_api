@@ -23,10 +23,10 @@ service FrameSpaceService {
   };	
 
   rpc SearchAxis(AxisSearchQuery) returns (AxisSearchQuery) {
-	option(google.api.http) = {
+    option(google.api.http) = {
       post: "v1/frame/SearchAxis"
       body: "*"
 	};
   };
-  
+
 }
