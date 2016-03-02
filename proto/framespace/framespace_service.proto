@@ -10,23 +10,23 @@ message NameList {
 }
 
 message AxisSearchQuery {
-	repeated string name = 1;
+  repeated string name = 1;
 }
 
 service FrameSpaceService {
 
-    rpc GetAxisTypes(NameList) returns (NameList) {
-      option (google.api.http) = {
-        post: "/v1/frame/GetAxisTypes"
-        body: "*"
-      };
-    };	
+  rpc GetAxisTypes(NameList) returns (NameList) {
+    option (google.api.http) = {
+      post: "/v1/frame/GetAxisTypes"
+      body: "*"
+    };
+  };	
 
-	rpc SearchAxis(AxisSearchQuery) returns (AxisSearchQuery) {
-		option(google.api.http) = {
-			post: "v1/frame/SearchAxis"
-			body: "*"
-		};
+  rpc SearchAxis(AxisSearchQuery) returns (AxisSearchQuery) {
+	option(google.api.http) = {
+      post: "v1/frame/SearchAxis"
+      body: "*"
 	};
-
+  };
+  
 }
