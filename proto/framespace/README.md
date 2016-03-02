@@ -25,7 +25,7 @@ Key: ABL2
 
 ### DataFrame Schema Overview
 
-![screen shot 2016-03-01 at 4 00 12 pm](https://cloud.githubusercontent.com/assets/6373975/13446281/e5beeaec-dfc6-11e5-96b7-a09e12c7fcaa.png)
+![screen shot 2016-03-01 at 4 00 12 pm](https://cloud.githubusercontent.com/assets/6373975/13470044/fae516a6-e05e-11e5-9b11-10343e538ddf.png)
 
 **DataFrame**: Two dimensional matrix, composed of major and minor Dimensions and a set of Vectors.
 
