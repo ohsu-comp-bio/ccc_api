@@ -27,9 +27,10 @@ message Key {
 **/
 message KeySpace {
 	int32 id = 1;
-	Axis axis = 2;
-	repeated Key keys = 3;
-	map<string, string> metadata = 4;
+	string name = 2;
+	Axis axis = 3;
+	repeated Key keys = 4;
+	map<string, string> metadata = 5;
 }
 
 /** Dimension is a subset of Keys from a KeySpace 
