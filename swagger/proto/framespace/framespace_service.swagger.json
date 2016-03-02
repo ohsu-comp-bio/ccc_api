@@ -17,13 +17,13 @@
   "paths": {
     "/v1/frame/GetAxisTypes": {
       "post": {
-        "summary": "DataFrameService.GetAxisTypes",
+        "summary": "FrameSpaceService.GetAxisTypes",
         "operationId": "GetAxisTypes",
         "responses": {
           "default": {
             "description": "Description",
             "schema": {
-              "$ref": "#/definitions/NameList"
+              "$ref": "#/definitions/framespaceNameList"
             }
           }
         },
@@ -33,24 +33,24 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/NameList"
+              "$ref": "#/definitions/framespaceNameList"
             }
           }
         ],
         "tags": [
-          "DataFrameService"
+          "FrameSpaceService"
         ]
       }
     },
     "/v1/frame/SearchAxis": {
       "post": {
-        "summary": "DataFrameService.SearchAxis",
+        "summary": "FrameSpaceService.SearchAxis",
         "operationId": "SearchAxis",
         "responses": {
           "default": {
             "description": "Description",
             "schema": {
-              "$ref": "#/definitions/NameList"
+              "$ref": "#/definitions/framespaceAxisSearchQuery"
             }
           }
         },
@@ -60,27 +60,20 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/AxisSearchQuery"
+              "$ref": "#/definitions/framespaceAxisSearchQuery"
             }
           }
         ],
         "tags": [
-          "DataFrameService"
+          "FrameSpaceService"
         ]
       }
     }
   },
   "definitions": {
-    "AxisSearchQuery": {
+    "framespaceAxisSearchQuery": {
       "properties": {
-        "axis_type": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          }
-        },
-        "namespace": {
+        "name": {
           "type": "array",
           "items": {
             "type": "string",
@@ -89,7 +82,7 @@
         }
       }
     },
-    "NameList": {
+    "framespaceNameList": {
       "properties": {
         "names": {
           "type": "array",

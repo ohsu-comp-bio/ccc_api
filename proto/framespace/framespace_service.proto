@@ -1,7 +1,8 @@
 syntax = "proto3";
 
 package framespace;
-import "framespace.proto";
+import "proto/framespace/framespace.proto";
+import "google/api/annotations.proto";
 
 /** Initial method definitions for FrameSpace **/
 
@@ -22,7 +23,7 @@ service FrameSpaceService {
     };
   };	
 
-  rpc GetAxisTypes(AxisSearchQuery) returns (AxisSearchQuery) {
+  rpc SearchAxis(AxisSearchQuery) returns (AxisSearchQuery) {
     option (google.api.http) = {
       post: "/v1/frame/SearchAxis"
       body: "*"
