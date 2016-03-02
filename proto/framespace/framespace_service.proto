@@ -5,10 +5,28 @@ import "framespace.proto";
 
 /** Initial method definitions for FrameSpace **/
 
-service FrameSpaceService {
-	rpc SearchAxis(AxisSearchQuery) returns (AxisSearchQuery)
+message NameList {
+  repeated string names = 1;
 }
 
 message AxisSearchQuery {
 	repeated string name = 1;
+}
+
+service FrameSpaceService {
+
+    rpc GetAxisTypes(NameList) returns (NameList) {
+      option (google.api.http) = {
+        post: "/v1/frame/GetAxisTypes"
+        body: "*"
+      };
+    };	
+
+	rpc SearchAxis(AxisSearchQuery) returns (AxisSearchQuery) {
+		option(google.api.http) = {
+			post: "v1/frame/SearchAxis"
+			body: "*"
+		};
+	};
+
 }

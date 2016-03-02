@@ -62,5 +62,6 @@ Axis: Samples; KeySpace: sample_id; Keys: sample1, sample2, sample3
 ```
 
 **DataFrame** with **VectorA** format has **DimensionA** as `major`, and **DimensionB** as `minor`.
+
 **DataFrame** with **VectorB** format has **DimensionB** as `major`, and **DimensionA** as `minor`.
 
