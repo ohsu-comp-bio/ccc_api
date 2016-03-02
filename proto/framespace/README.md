@@ -33,22 +33,34 @@ Key: ABL2
 
 **Vector**: A perpendicular (relative to the major Dimension) 1:n chunk of a matrix, where n is the number of Cells. A Vector is defined in terms of major and minor Dimensions in a DataFrame. 
 
-For instance, DimensionA above would be the major Dimension of a DataFrame defined as a set of vectors parallel (and including) VectorA. DimensionB would be the minor Dimension of this DataFrame. Given this, the keys identifying a single cell are inherited from DimensionB, and the vector key is inherited from DimensionA (see below for example). 
+* For instance, DimensionA above would be the major Dimension of a DataFrame defined as a set of vectors parallel (and including) VectorA. DimensionB would be the minor Dimension of this DataFrame. Given this, the keys identifying a single cell are inherited from DimensionB, and the vector key is inherited from DimensionA (see below for example). 
 
-Similarily, DimensionB is the major Dimension of a DataFrame defined as a set of vectors parallel (and including) VectorB. DimensionA would be the minor Dimension in this DataFrame. Given this, the keys identifying a single cell are inherited from DimensionA, and the vector key is inherited from DimensionB (see below for example This is defined to allow ease of matrix transposing. 
+* Similarily, DimensionB is the major Dimension of a DataFrame defined as a set of vectors parallel (and including) VectorB. DimensionA would be the minor Dimension in this DataFrame. Given this, the keys identifying a single cell are inherited from DimensionA, and the vector key is inherited from DimensionB (see below for example This is defined to allow ease of matrix transposing. 
 
 **Cell**: A single element including one type of arbitrary data; a Cell gains context when considered the intersection of two vectors. 
 
 ### Vectors: An Example
 
-From the above diagram, let's define:
+From the above diagram:
 
-DimensionA: Axis: Genes; KeySpace: symbol; Keys: ABCA4, ABL2, ACADM
-DimensionB: Axis: Samples; KeySpace: sample_id; Keys: sample1, sample2, sample3
+**DimensionA**: 
+```
+Axis: Genes; KeySpace: symbol; Keys: ABCA4, ABL2, ACADM
+```
+**DimensionB**: 
+```
+Axis: Samples; KeySpace: sample_id; Keys: sample1, sample2, sample3
+```
 
-VectorA: {'ABCA4': [{'sample1': 0}, {'sample2': 1}, {'sample3': -1}]}
-VectorB: {'sample1': [{'ABCA4': 0}, {'ABL2': -1}, {'ACADM': 1}]}
+**VectorA**: 
+```
+{'ABCA4': [{'sample1': 0}, {'sample2': 1}, {'sample3': -1}]}
+```
+**VectorB**: 
+```
+{'sample1': [{'ABCA4': 0}, {'ABL2': -1}, {'ACADM': 1}]}
+```
 
-DataFrame with VectorA format has DimensionA as major, and DimensionB as minor.
-DataFrame with VectorB format has DimensionB as major, and DimensionA as minor.
+**DataFrame** with **VectorA** format has **DimensionA** as `major`, and **DimensionB** as `minor`.
+**DataFrame** with **VectorB** format has **DimensionB** as `major`, and **DimensionA** as `minor`.
 
