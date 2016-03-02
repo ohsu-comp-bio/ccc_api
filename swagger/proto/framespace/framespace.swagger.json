@@ -1,0 +1,104 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "",
+    "title": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/frame/GetAxisTypes": {
+      "post": {
+        "summary": "DataFrameService.GetAxisTypes",
+        "operationId": "GetAxisTypes",
+        "responses": {
+          "default": {
+            "description": "Description",
+            "schema": {
+              "$ref": "#/definitions/NameList"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NameList"
+            }
+          }
+        ],
+        "tags": [
+          "DataFrameService"
+        ]
+      }
+    },
+    "/v1/frame/SearchAxis": {
+      "post": {
+        "summary": "DataFrameService.SearchAxis",
+        "operationId": "SearchAxis",
+        "responses": {
+          "default": {
+            "description": "Description",
+            "schema": {
+              "$ref": "#/definitions/NameList"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AxisSearchQuery"
+            }
+          }
+        ],
+        "tags": [
+          "DataFrameService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AxisSearchQuery": {
+      "properties": {
+        "axis_type": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
+        },
+        "namespace": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      }
+    },
+    "NameList": {
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      }
+    }
+  }
+}
