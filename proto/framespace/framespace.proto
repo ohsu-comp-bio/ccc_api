@@ -65,7 +65,7 @@ message Cell {
 message Vector {
 	int32 index = 1;
 	string key = 2;
-	KeyCellMap contents = 3;
+	repeated KeyCellMap contents = 3;
 	map<string, string> info = 4;
 }
 
