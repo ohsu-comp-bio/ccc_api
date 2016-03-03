@@ -4,6 +4,8 @@ Protobuf Declaration of the CCC API
 
 This project is designed to declare the core CCC API in a single location.
 
+API docs [here](http://ohsu-computational-biology.github.io/ccc_api/)
+
 ### Contributing
 
 Each API 'team' is responsible for a project in the 'proto' directory: `ccc_api/proto/<project>`.
