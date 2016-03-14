@@ -15,15 +15,15 @@
     "application/json"
   ],
   "paths": {
-    "/v1/frame/GetAxisTypes": {
+    "/v1/frame/axes/search": {
       "post": {
-        "summary": "FrameSpaceService.GetAxisTypes",
-        "operationId": "GetAxisTypes",
+        "summary": "FrameSpaceService.GetAxes",
+        "operationId": "GetAxes",
         "responses": {
           "default": {
             "description": "Description",
             "schema": {
-              "$ref": "#/definitions/framespaceNameList"
+              "$ref": "#/definitions/framespaceSearchAxesResponse"
             }
           }
         },
@@ -33,7 +33,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/framespaceNameList"
+              "$ref": "#/definitions/framespaceSearchAxesRequest"
             }
           }
         ],
@@ -42,15 +42,15 @@
         ]
       }
     },
-    "/v1/frame/SearchAxis": {
+    "/v1/frame/keyspaces/search": {
       "post": {
-        "summary": "FrameSpaceService.SearchAxis",
-        "operationId": "SearchAxis",
+        "summary": "FrameSpaceService.SearchKeySpaces",
+        "operationId": "SearchKeySpaces",
         "responses": {
           "default": {
             "description": "Description",
             "schema": {
-              "$ref": "#/definitions/framespaceAxisSearchQuery"
+              "$ref": "#/definitions/framespaceSearchKeySpacesResponse"
             }
           }
         },
@@ -60,7 +60,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/framespaceAxisSearchQuery"
+              "$ref": "#/definitions/framespaceSearchKeySpacesRequest"
             }
           }
         ],
@@ -71,25 +71,139 @@
     }
   },
   "definitions": {
-    "framespaceAxisSearchQuery": {
+    "framespaceAxis": {
       "properties": {
+        "description": {
+          "type": "string",
+          "format": "string"
+        },
         "name": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          }
+          "type": "string",
+          "format": "string"
         }
       }
     },
-    "framespaceNameList": {
+    "framespaceKey": {
       "properties": {
-        "names": {
+        "keySpaceId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "value": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceKeySpace": {
+      "properties": {
+        "axis": {
+          "$ref": "#/definitions/framespaceAxis"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "keys": {
           "type": "array",
           "items": {
-            "type": "string",
-            "format": "string"
+            "$ref": "#/definitions/framespaceKey"
           }
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceKeySpaceMetadataEntry"
+          }
+        },
+        "name": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceKeySpaceMetadataEntry": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "format": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceSearchAxesRequest": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "string"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_token": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceSearchAxesResponse": {
+      "properties": {
+        "axes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceAxis"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceSearchKeySpacesRequest": {
+      "properties": {
+        "axis": {
+          "$ref": "#/definitions/framespaceAxis"
+        },
+        "id": {
+          "type": "string",
+          "format": "string"
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceKey"
+          }
+        },
+        "name": {
+          "type": "string",
+          "format": "string"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_token": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceSearchKeySpacesResponse": {
+      "properties": {
+        "keyspaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceKeySpace"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "format": "string"
         }
       }
     }

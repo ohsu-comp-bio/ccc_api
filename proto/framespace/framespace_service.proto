@@ -4,30 +4,54 @@ package framespace;
 import "proto/framespace/framespace.proto";
 import "google/api/annotations.proto";
 
-/** Initial method definitions for FrameSpace **/
-
-message NameList {
-  repeated string names = 1;
-}
-
-message AxisSearchQuery {
-  repeated string name = 1;
-}
-
 service FrameSpaceService {
 
-  rpc GetAxisTypes(NameList) returns (NameList) {
+  // Gets a list of available axes 
+  rpc GetAxes(SearchAxesRequest) returns (SearchAxesResponse) {
     option (google.api.http) = {
-      post: "/v1/frame/GetAxisTypes"
+      post: "/v1/frame/axes/search"
       body: "*"
     };
-  };	
+  }
 
-  rpc SearchAxis(AxisSearchQuery) returns (AxisSearchQuery) {
+  // Gets a list of available KeySpaces for an axis
+  rpc SearchKeySpaces(SearchKeySpacesRequest) returns (SearchKeySpacesResponse) {
     option (google.api.http) = {
-      post: "/v1/frame/SearchAxis"
+      post: "/v1/frame/keyspaces/search"
       body: "*"
     };
-  };	
+  }
 
+}
+
+/* POST /axes/search 
+search by name
+*/
+message SearchAxesRequest {
+  string name = 1;
+  int32 page_size = 2;
+  string page_token = 3;
+}
+
+message SearchAxesResponse {
+  repeated Axis axes = 1;
+  string next_page_token = 2;
+}
+
+/* POST /keyspaces/search 
+search by name, axis, and keys
+restrictive get by id 
+*/
+message SearchKeySpacesRequest {
+  string id = 1;
+  string name = 2;
+  Axis axis = 3;
+  repeated Key keys = 4;
+  int32 page_size = 5;
+  string page_token = 6;
+}
+
+message SearchKeySpacesResponse {
+  repeated KeySpace keyspaces = 1;
+  string next_page_token = 2;
 }
