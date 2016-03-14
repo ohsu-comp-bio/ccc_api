@@ -42,6 +42,33 @@
         ]
       }
     },
+    "/v1/frame/dataframe/slice": {
+      "post": {
+        "summary": "FrameSpaceService.SliceDataFrame",
+        "operationId": "SliceDataFrame",
+        "responses": {
+          "default": {
+            "description": "Description",
+            "schema": {
+              "$ref": "#/definitions/framespaceDataFrame"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/framespaceSliceDataFrameRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
     "/v1/frame/dataframes/search": {
       "post": {
         "summary": "FrameSpaceService.SearchDataFrames",
@@ -294,7 +321,7 @@
     },
     "framespaceSearchDataFramesRequest": {
       "properties": {
-        "ids": {
+        "data_frame_ids": {
           "type": "array",
           "items": {
             "type": "string",
@@ -336,17 +363,17 @@
         "axis": {
           "$ref": "#/definitions/framespaceAxis"
         },
-        "ids": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          }
-        },
         "keys": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/framespaceKey"
+          }
+        },
+        "keyspace_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
           }
         },
         "names": {
@@ -377,6 +404,26 @@
         "next_page_token": {
           "type": "string",
           "format": "string"
+        }
+      }
+    },
+    "framespaceSliceDataFrameRequest": {
+      "properties": {
+        "data_frame_id": {
+          "type": "string",
+          "format": "string"
+        },
+        "major_keys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceKey"
+          }
+        },
+        "minor_keys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceKey"
+          }
         }
       }
     },

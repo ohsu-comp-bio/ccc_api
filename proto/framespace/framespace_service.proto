@@ -29,6 +29,13 @@ service FrameSpaceService {
     };
   }
 
+  rpc SliceDataFrame(SliceDataFrameRequest) returns (DataFrame) {
+    option(google.api.http) = {
+      post: "/v1/frame/dataframe/slice"
+      body: "*"
+    };
+  }
+
 }
 
 /* POST /axes/search 
@@ -50,7 +57,7 @@ search by name, axis, and keys
 restrictive get by id 
 */
 message SearchKeySpacesRequest {
-  repeated string ids = 1;
+  repeated string keyspace_ids = 1;
   repeated string names = 2;
   Axis axis = 3;
   repeated Key keys = 4;
@@ -63,11 +70,11 @@ message SearchKeySpacesResponse {
   string next_page_token = 2;
 }
 
-/* POST /frame/dataframes/search 
+/* POST /dataframes/search 
 search for DataFrames associated with the following keyspaces
 */
 message SearchDataFramesRequest {
-  repeated string ids = 1;
+  repeated string data_frame_ids = 1;
   repeated KeySpace keyspaces = 2;
   int32 page_size = 3;
   string page_token = 4;
@@ -76,4 +83,13 @@ message SearchDataFramesRequest {
 message SearchDataFramesResponse {
   repeated DataFrame dataframes = 1;
   string next_page_token = 2;
+}
+
+/* POST /dataframe/slice 
+Given an id return a slice based on the following major and minor keys
+*/
+message SliceDataFrameRequest {
+  string data_frame_id = 1;
+  repeated Key major_keys = 2;
+  repeated Key minor_keys = 3;
 }
