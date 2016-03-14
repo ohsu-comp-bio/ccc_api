@@ -413,17 +413,11 @@
           "type": "string",
           "format": "string"
         },
-        "major_keys": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/framespaceKey"
-          }
+        "new_major": {
+          "$ref": "#/definitions/framespaceDimension"
         },
-        "minor_keys": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/framespaceKey"
-          }
+        "new_minor": {
+          "$ref": "#/definitions/framespaceDimension"
         }
       }
     },

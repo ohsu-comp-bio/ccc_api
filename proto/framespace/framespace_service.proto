@@ -86,10 +86,11 @@ message SearchDataFramesResponse {
 }
 
 /* POST /dataframe/slice 
-Given an id return a slice based on the following major and minor keys
+Given an id return a slice based on the following dimensions
+Client creates a list of keys as a new dimension.
 */
 message SliceDataFrameRequest {
   string data_frame_id = 1;
-  repeated Key major_keys = 2;
-  repeated Key minor_keys = 3;
+  Dimension new_major = 2;
+  Dimension new_minor = 3;
 }
