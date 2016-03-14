@@ -17,8 +17,8 @@
   "paths": {
     "/v1/frame/axes/search": {
       "post": {
-        "summary": "FrameSpaceService.GetAxes",
-        "operationId": "GetAxes",
+        "summary": "FrameSpaceService.SearchAxes",
+        "operationId": "SearchAxes",
         "responses": {
           "default": {
             "description": "Description",
