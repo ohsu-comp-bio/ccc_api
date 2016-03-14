@@ -22,13 +22,20 @@ service FrameSpaceService {
     };
   }
 
+  rpc SearchDataFrames(SearchDataFramesRequest) returns (SearchDataFramesResponse) {
+    option(google.api.http) = {
+      post: "/v1/frame/dataframes/search"
+      body: "*"
+    };
+  }
+
 }
 
 /* POST /axes/search 
 search by name
 */
 message SearchAxesRequest {
-  string name = 1;
+  repeated string names = 1;
   int32 page_size = 2;
   string page_token = 3;
 }
@@ -43,8 +50,8 @@ search by name, axis, and keys
 restrictive get by id 
 */
 message SearchKeySpacesRequest {
-  string id = 1;
-  string name = 2;
+  repeated string ids = 1;
+  repeated string names = 2;
   Axis axis = 3;
   repeated Key keys = 4;
   int32 page_size = 5;
@@ -53,5 +60,20 @@ message SearchKeySpacesRequest {
 
 message SearchKeySpacesResponse {
   repeated KeySpace keyspaces = 1;
+  string next_page_token = 2;
+}
+
+/* POST /frame/dataframes/search 
+search for DataFrames associated with the following keyspaces
+*/
+message SearchDataFramesRequest {
+  repeated string ids = 1;
+  repeated KeySpace keyspaces = 2;
+  int32 page_size = 3;
+  string page_token = 4;
+}
+
+message SearchDataFramesResponse {
+  repeated DataFrame dataframes = 1;
   string next_page_token = 2;
 }

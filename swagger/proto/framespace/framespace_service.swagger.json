@@ -42,6 +42,33 @@
         ]
       }
     },
+    "/v1/frame/dataframes/search": {
+      "post": {
+        "summary": "FrameSpaceService.SearchDataFrames",
+        "operationId": "SearchDataFrames",
+        "responses": {
+          "default": {
+            "description": "Description",
+            "schema": {
+              "$ref": "#/definitions/framespaceSearchDataFramesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/framespaceSearchDataFramesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
     "/v1/frame/keyspaces/search": {
       "post": {
         "summary": "FrameSpaceService.SearchKeySpaces",
@@ -71,6 +98,18 @@
     }
   },
   "definitions": {
+    "VectorInfoEntry": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "format": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
     "framespaceAxis": {
       "properties": {
         "description": {
@@ -83,6 +122,82 @@
         }
       }
     },
+    "framespaceCell": {
+      "properties": {
+        "bool_data": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "float_data": {
+          "type": "number",
+          "format": "float"
+        },
+        "int_data": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "sint_data": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "str_data": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceDataFrame": {
+      "properties": {
+        "contents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceVector"
+          }
+        },
+        "id": {
+          "type": "string",
+          "format": "string"
+        },
+        "major": {
+          "$ref": "#/definitions/framespaceDimension"
+        },
+        "metadata": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceDataFrameMetadataEntry"
+          }
+        },
+        "minor": {
+          "$ref": "#/definitions/framespaceDimension"
+        }
+      }
+    },
+    "framespaceDataFrameMetadataEntry": {
+      "properties": {
+        "key": {
+          "type": "string",
+          "format": "string"
+        },
+        "value": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceDimension": {
+      "properties": {
+        "keySpaceId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "keys": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceKey"
+          }
+        }
+      }
+    },
     "framespaceKey": {
       "properties": {
         "keySpaceId": {
@@ -92,6 +207,16 @@
         "value": {
           "type": "string",
           "format": "string"
+        }
+      }
+    },
+    "framespaceKeyCellMap": {
+      "properties": {
+        "key": {
+          "$ref": "#/definitions/framespaceKey"
+        },
+        "value": {
+          "$ref": "#/definitions/framespaceCell"
         }
       }
     },
@@ -136,9 +261,12 @@
     },
     "framespaceSearchAxesRequest": {
       "properties": {
-        "name": {
-          "type": "string",
-          "format": "string"
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
         },
         "page_size": {
           "type": "integer",
@@ -164,14 +292,56 @@
         }
       }
     },
+    "framespaceSearchDataFramesRequest": {
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
+        },
+        "keyspaces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceKeySpace"
+          }
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_token": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceSearchDataFramesResponse": {
+      "properties": {
+        "dataframes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceDataFrame"
+          }
+        },
+        "next_page_token": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
     "framespaceSearchKeySpacesRequest": {
       "properties": {
         "axis": {
           "$ref": "#/definitions/framespaceAxis"
         },
-        "id": {
-          "type": "string",
-          "format": "string"
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
         },
         "keys": {
           "type": "array",
@@ -179,9 +349,12 @@
             "$ref": "#/definitions/framespaceKey"
           }
         },
-        "name": {
-          "type": "string",
-          "format": "string"
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
         },
         "page_size": {
           "type": "integer",
@@ -202,6 +375,30 @@
           }
         },
         "next_page_token": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceVector": {
+      "properties": {
+        "contents": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceKeyCellMap"
+          }
+        },
+        "index": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "info": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VectorInfoEntry"
+          }
+        },
+        "key": {
           "type": "string",
           "format": "string"
         }
