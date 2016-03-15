@@ -321,17 +321,18 @@
     },
     "framespaceSearchDataFramesRequest": {
       "properties": {
-        "data_frame_ids": {
+        "dataframe_ids": {
           "type": "array",
           "items": {
             "type": "string",
             "format": "string"
           }
         },
-        "keyspaces": {
+        "keyspace_ids": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/framespaceKeySpace"
+            "type": "string",
+            "format": "string"
           }
         },
         "page_size": {
@@ -409,7 +410,7 @@
     },
     "framespaceSliceDataFrameRequest": {
       "properties": {
-        "data_frame_id": {
+        "dataframe_id": {
           "type": "string",
           "format": "string"
         },
