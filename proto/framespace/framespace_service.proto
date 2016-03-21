@@ -75,7 +75,7 @@ search for DataFrames associated with the following keyspaces
 */
 message SearchDataFramesRequest {
   repeated string dataframe_ids = 1;
-  repeated string keyspace_ids = 2;
+  repeated int32 keyspace_ids = 2;
   int32 page_size = 3;
   string page_token = 4;
 }
