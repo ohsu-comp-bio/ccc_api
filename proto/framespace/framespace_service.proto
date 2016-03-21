@@ -22,6 +22,14 @@ service FrameSpaceService {
     };
   }
 
+  // Gets a list of available Units of measurement 
+  rpc SearchUnits(SearchUnitsRequest) returns (SearchUnitsResponse) {
+    option (google.api.http) = {
+      post: "/v1/frame/units/search"
+      body: "*"
+    };
+  }
+
   rpc SearchDataFrames(SearchDataFramesRequest) returns (SearchDataFramesResponse) {
     option(google.api.http) = {
       post: "/v1/frame/dataframes/search"
@@ -57,10 +65,10 @@ search by name, axis, and keys
 restrictive get by id 
 */
 message SearchKeySpacesRequest {
-  repeated string keyspace_ids = 1;
+  repeated int32 keyspace_ids = 1;
   repeated string names = 2;
   Axis axis = 3;
-  repeated Key keys = 4;
+  repeated string keys = 4;
   int32 page_size = 5;
   string page_token = 6;
 }
@@ -70,14 +78,31 @@ message SearchKeySpacesResponse {
   string next_page_token = 2;
 }
 
+/* POST /units/search
+search for available units of measurement
+available in FrameSpace
+*/ 
+message SearchUnitsRequest {
+  repeated int32 unit_ids = 1;
+  repeated int32 names = 2;
+  repeated string types = 3;
+}
+
+message SearchUnitsResponse {
+  repeated Unit units = 1;
+  string next_page_token = 2;
+}
+
 /* POST /dataframes/search 
 search for DataFrames associated with the following keyspaces
+search for DataFrames associated with the following units of measurement
 */
 message SearchDataFramesRequest {
   repeated string dataframe_ids = 1;
   repeated int32 keyspace_ids = 2;
-  int32 page_size = 3;
-  string page_token = 4;
+  repeated Unit units = 3;
+  int32 page_size = 4;
+  string page_token = 5;
 }
 
 message SearchDataFramesResponse {

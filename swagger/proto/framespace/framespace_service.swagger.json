@@ -122,6 +122,33 @@
           "FrameSpaceService"
         ]
       }
+    },
+    "/v1/frame/units/search": {
+      "post": {
+        "summary": "FrameSpaceService.SearchUnits",
+        "operationId": "SearchUnits",
+        "responses": {
+          "default": {
+            "description": "Description",
+            "schema": {
+              "$ref": "#/definitions/framespaceSearchUnitsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/framespaceSearchUnitsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
     }
   },
   "definitions": {
@@ -144,30 +171,6 @@
           "format": "string"
         },
         "name": {
-          "type": "string",
-          "format": "string"
-        }
-      }
-    },
-    "framespaceCell": {
-      "properties": {
-        "bool_data": {
-          "type": "boolean",
-          "format": "boolean"
-        },
-        "float_data": {
-          "type": "number",
-          "format": "float"
-        },
-        "int_data": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "sint_data": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "str_data": {
           "type": "string",
           "format": "string"
         }
@@ -196,6 +199,9 @@
         },
         "minor": {
           "$ref": "#/definitions/framespaceDimension"
+        },
+        "units": {
+          "$ref": "#/definitions/framespaceUnit"
         }
       }
     },
@@ -220,30 +226,9 @@
         "keys": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/framespaceKey"
+            "type": "string",
+            "format": "string"
           }
-        }
-      }
-    },
-    "framespaceKey": {
-      "properties": {
-        "keySpaceId": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "value": {
-          "type": "string",
-          "format": "string"
-        }
-      }
-    },
-    "framespaceKeyCellMap": {
-      "properties": {
-        "key": {
-          "$ref": "#/definitions/framespaceKey"
-        },
-        "value": {
-          "$ref": "#/definitions/framespaceCell"
         }
       }
     },
@@ -259,7 +244,8 @@
         "keys": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/framespaceKey"
+            "type": "string",
+            "format": "string"
           }
         },
         "metadata": {
@@ -281,6 +267,34 @@
           "format": "string"
         },
         "value": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
+    "framespaceKeyValue": {
+      "properties": {
+        "bool_data": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "float_data": {
+          "type": "number",
+          "format": "float"
+        },
+        "int_data": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "key": {
+          "type": "string",
+          "format": "string"
+        },
+        "sint_data": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "str_data": {
           "type": "string",
           "format": "string"
         }
@@ -331,8 +345,8 @@
         "keyspace_ids": {
           "type": "array",
           "items": {
-            "type": "string",
-            "format": "string"
+            "type": "integer",
+            "format": "int32"
           }
         },
         "page_size": {
@@ -342,6 +356,12 @@
         "page_token": {
           "type": "string",
           "format": "string"
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceUnit"
+          }
         }
       }
     },
@@ -367,14 +387,15 @@
         "keys": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/framespaceKey"
+            "type": "string",
+            "format": "string"
           }
         },
         "keyspace_ids": {
           "type": "array",
           "items": {
-            "type": "string",
-            "format": "string"
+            "type": "integer",
+            "format": "int32"
           }
         },
         "names": {
@@ -408,6 +429,45 @@
         }
       }
     },
+    "framespaceSearchUnitsRequest": {
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "types": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
+        },
+        "unit_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      }
+    },
+    "framespaceSearchUnitsResponse": {
+      "properties": {
+        "next_page_token": {
+          "type": "string",
+          "format": "string"
+        },
+        "units": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceUnit"
+          }
+        }
+      }
+    },
     "framespaceSliceDataFrameRequest": {
       "properties": {
         "dataframe_id": {
@@ -422,12 +482,24 @@
         }
       }
     },
+    "framespaceUnit": {
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "string"
+        },
+        "type": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    },
     "framespaceVector": {
       "properties": {
         "contents": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/framespaceKeyCellMap"
+            "$ref": "#/definitions/framespaceKeyValue"
           }
         },
         "index": {

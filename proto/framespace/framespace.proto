@@ -5,83 +5,84 @@ package framespace;
 /** Axis Space 
 * Top level description of a dimension: 
 * Samples, Genomic Labels, Clinical Terms, etc.
+* Note: Experimental measurements are Units, not axes.
 **/
 message Axis {
 	string name = 1;
 	string description = 2;
 }
 
-/**  Key
-* A global vector identifier (ex: sample1)
-* Belongs to a KeySpace, actually is the key portion 
-* of any key value data in framespace
-**/
-message Key {
-	string value = 1;
-	int32 keySpaceId = 2;
-}
-
-/** KeySpace is the set of keys that a project has defined, for a given AxisSpace 
-* Example: (sample1, sample2, sample3)
+/** KeySpace is the set of keys that a project has defined, 
+* for a given AxisSpace, Example: (sample1, sample2, sample3).
 * Restrictions on keys could be defined in the metadata field.
+* A key is defined as an entity identifier. 
 **/
 message KeySpace {
 	int32 id = 1;
 	string name = 2;
 	Axis axis = 3;
-	repeated Key keys = 4;
+	repeated string keys = 4;
 	map<string, string> metadata = 5;
 }
 
-/** Dimension is a subset of Keys from a KeySpace 
+/** Dimension is a subset of keys from a KeySpace 
 * axis space inherited from keyspace
 * keys, is the actual subset list
+* a key must belong to a keyspace
 **/
 message Dimension {
 	int32 keySpaceId = 1;
-	repeated Key keys = 2;
-}
-
-/** Support for arbitrary data types 
-* A cell may have only one data type
-* Consider moving to Any type after more development
-**/
-message Cell {
-	oneof cell_type {
-		float float_data = 1;
-		string str_data = 2;
-		bool bool_data = 3;
-		int32 int_data = 4; 
-		sint32 sint_data = 5;
-	}
+	repeated string keys = 2;
 }
 
 /** Optional index order 
 * Key should be the alternate dimension's key
-* {'vector_key': [{'sample1': 0}, {'sample2':1}]}
+* {'vector_key': [{'sample1': value1}, {'sample2': value2}]}
 * vector_key is a key from the dimension major,
 * sample1 is a key from the dimension minor
+* value1 is a unit of measure type enforced by DataFrame.units.type
 **/
 message Vector {
 	int32 index = 1;
 	string key = 2;
-	repeated KeyCellMap contents = 3;
+	repeated KeyValue contents = 3;
 	map<string, string> info = 4;
+}
+
+/* Unit is a basic message enforcing:
+* 1. a label specifying what the measurement is
+* 2. a type that should be enforced on all value of this unit
+*/
+message Unit {
+	string name = 1;
+	string type = 2;
 }
 
 /** Dataframe consists of two dimensions 
 * and a set of vectors
+* units is an unstructured flag specifying the value of a cell
+* any restrictions on units should be defined in metadata
 **/
 message DataFrame {
 	string id = 1;
 	Dimension major = 2;
 	Dimension minor = 3;
-	map<string, string> metadata = 4;
-	repeated Vector contents = 5;
+	Unit units = 4;
+	map<string, string> metadata = 5;
+	repeated Vector contents = 6;
 }
 
-/** special key: cell map **/
-message KeyCellMap {
-	Key key = 1;
-	Cell value = 2;
+/** Special key: value map 
+* This is one cell in a DataFrame (an element of vector content list). 
+* value type should be enforced based on DataFrame.units.type
+**/
+message KeyValue {
+	string key = 1;
+	oneof value {
+		float float_data = 2;
+		string str_data = 3;
+		bool bool_data = 4;
+		int32 int_data = 5; 
+		sint32 sint_data = 6;
+	}
 }
