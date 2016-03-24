@@ -30,6 +30,7 @@ service FrameSpaceService {
     };
   }
 
+  // Get a list of DataFrames
   rpc SearchDataFrames(SearchDataFramesRequest) returns (SearchDataFramesResponse) {
     option(google.api.http) = {
       post: "/v1/frame/dataframes/search"
@@ -37,6 +38,7 @@ service FrameSpaceService {
     };
   }
 
+  // Subset a DataFrame
   rpc SliceDataFrame(SliceDataFrameRequest) returns (DataFrame) {
     option(google.api.http) = {
       post: "/v1/frame/dataframe/slice"
@@ -83,9 +85,8 @@ search for available units of measurement
 available in FrameSpace
 */ 
 message SearchUnitsRequest {
-  repeated int32 unit_ids = 1;
-  repeated int32 names = 2;
-  repeated string types = 3;
+  repeated int32 names = 1;
+  repeated string types = 2;
 }
 
 message SearchUnitsResponse {

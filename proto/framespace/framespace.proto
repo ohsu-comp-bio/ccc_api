@@ -40,7 +40,7 @@ message Dimension {
 * {'vector_key': [{'sample1': value1}, {'sample2': value2}]}
 * vector_key is a key from the dimension major,
 * sample1 is a key from the dimension minor
-* value1 is a unit of measure type enforced by DataFrame.units.type
+* value1 is a unit of measure type enforced by DataFrame.units
 **/
 message Vector {
 	int32 index = 1;
@@ -50,31 +50,33 @@ message Vector {
 }
 
 /* Unit is a basic message enforcing:
-* 1. a label specifying what the measurement is
-* 2. a type that should be enforced on all value of this unit
+* a label specifying what the measurement is
+* a description to identify specific info about this measurement
 */
 message Unit {
 	string name = 1;
-	string type = 2;
+	string description = 2;
 }
 
 /** Dataframe consists of two dimensions 
 * and a set of vectors
 * units is an unstructured flag specifying the value of a cell
 * any restrictions on units should be defined in metadata
+* order of heterogenous vectors should correspond to order of
+* units in Unit list.
 **/
 message DataFrame {
 	string id = 1;
 	Dimension major = 2;
 	Dimension minor = 3;
-	Unit units = 4;
+	repeated Unit units = 4;
 	map<string, string> metadata = 5;
 	repeated Vector contents = 6;
 }
 
 /** Special key: value map 
 * This is one cell in a DataFrame (an element of vector content list). 
-* value type should be enforced based on DataFrame.units.type
+* value type should be enforced based on DataFrame.units
 **/
 message KeyValue {
 	string key = 1;
