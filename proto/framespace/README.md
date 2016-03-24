@@ -37,7 +37,7 @@ Key: ABL2
 
 * Similarily, DimensionB is the major Dimension of a DataFrame defined as a set of vectors parallel (and including) VectorB. DimensionA would be the minor Dimension in this DataFrame. Given this, the keys identifying a single cell are inherited from DimensionA, and the vector key is inherited from DimensionB (see below for example This is defined to allow ease of matrix transposing. 
 
-**Cell**: A single element including one type of arbitrary data; a Cell gains context when considered the intersection of two vectors. 
+**Cell**: A cell is what holds the value as defined by the experimental measurement unit. The unit value has context when considered as the intersection between two keyspaces.
 
 ### Vectors: An Example
 
@@ -61,7 +61,7 @@ Axis: Samples; KeySpace: sample_id; Keys: sample1, sample2, sample3
 {'sample1': [{'ABCA4': 0}, {'ABL2': -1}, {'ACADM': 1}]}
 ```
 
-**DataFrame** with **VectorA** format has **DimensionA** as `major`, and **DimensionB** as `minor`.
+**DataFrame** with **VectorA** format has **DimensionA** as `major`, **DimensionB** as `minor`, and Unit as CNV.
 
-**DataFrame** with **VectorB** format has **DimensionB** as `major`, and **DimensionA** as `minor`.
+**DataFrame** with **VectorB** format has **DimensionB** as `major`, **DimensionA** as `minor`, and unit as CNV.
 
