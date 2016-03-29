@@ -69,7 +69,7 @@ restrictive get by id
 message SearchKeySpacesRequest {
   repeated int32 keyspace_ids = 1;
   repeated string names = 2;
-  Axis axis = 3;
+  repeated string axis_names = 3;
   repeated string keys = 4;
   int32 page_size = 5;
   string page_token = 6;

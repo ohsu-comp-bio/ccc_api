@@ -20,7 +20,7 @@ message Axis {
 message KeySpace {
 	int32 id = 1;
 	string name = 2;
-	Axis axis = 3;
+	string axis_name = 3;
 	repeated string keys = 4;
 	map<string, string> metadata = 5;
 }
