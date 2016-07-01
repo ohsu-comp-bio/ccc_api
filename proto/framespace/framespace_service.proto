@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package framespace;
 import "proto/framespace/framespace.proto";
-// import "google/protobuf/field_mask.proto";
 
 service FrameSpaceService {
 
