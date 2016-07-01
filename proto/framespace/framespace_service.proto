@@ -7,20 +7,45 @@ import "proto/framespace/framespace.proto";
 service FrameSpaceService {
 
   // Gets a list of available axes 
-  rpc SearchAxes(SearchAxesRequest) returns (SearchAxesResponse);
+  rpc SearchAxes(SearchAxesRequest) returns (SearchAxesResponse){
+    option (google.api.http) = {
+      post: "/v1/frame/axes/search"
+      body: "*"
+    };
+  }
 
   // Gets a list of available KeySpaces for an axis
   // Does not return keys
-  rpc SearchKeySpaces(SearchKeySpacesRequest) returns (SearchKeySpacesResponse);
+  rpc SearchKeySpaces(SearchKeySpacesRequest) returns (SearchKeySpacesResponse){
+    option (google.api.http) = {
+      post: "/v1/frame/keyspaces/search"
+      body: "*"
+    };
+  }
 
   // Gets a list of available Units of measurement 
-  rpc SearchUnits(SearchUnitsRequest) returns (SearchUnitsResponse);
+  rpc SearchUnits(SearchUnitsRequest) returns (SearchUnitsResponse){
+    option (google.api.http) = {
+      post: "/v1/frame/units/search"
+      body: "*"
+    };
+  }
 
   // Get a list of DataFrames
-  rpc SearchDataFrames(SearchDataFramesRequest) returns (SearchDataFramesResponse);
+  rpc SearchDataFrames(SearchDataFramesRequest) returns (SearchDataFramesResponse){
+    option (google.api.http) = {
+      post: "/v1/frame/dataframes/search"
+      body: "*"
+    };
+  }
 
   // Subset a DataFrame
-  rpc SliceDataFrame(SliceDataFrameRequest) returns (DataFrame);
+  rpc SliceDataFrame(SliceDataFrameRequest) returns (DataFrame){
+    option (google.api.http) = {
+      post: "/v1/frame/dataframe/slice"
+      body: "*"
+    };
+  }
 
 }
 
