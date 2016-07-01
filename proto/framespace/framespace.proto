@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package framespace;
 
+import "google/protobuf/struct.proto";
+
 /** Axis Space 
 * Top level description of a dimension: 
 * Samples, Genomic Labels, Clinical Terms, etc.
@@ -18,7 +20,7 @@ message Axis {
 * A key is defined as an entity identifier. 
 **/
 message KeySpace {
-	int32 id = 1;
+	string id = 1;
 	string name = 2;
 	string axis_name = 3;
 	repeated string keys = 4;
@@ -31,35 +33,23 @@ message KeySpace {
 * a key must belong to a keyspace
 **/
 message Dimension {
-	int32 keySpaceId = 1;
+	string keyspace_id = 1;
 	repeated string keys = 2;
-}
-
-/** Optional index order 
-* Key should be the alternate dimension's key
-* {'vector_key': [{'sample1': value1}, {'sample2': value2}]}
-* vector_key is a key from the dimension major,
-* sample1 is a key from the dimension minor
-* value1 is a unit of measure type enforced by DataFrame.units
-**/
-message Vector {
-	int32 index = 1;
-	string key = 2;
-	repeated KeyValue contents = 3;
-	map<string, string> info = 4;
 }
 
 /* Unit is a basic message enforcing:
 * a label specifying what the measurement is
 * a description to identify specific info about this measurement
+* Units have ids unlike axes because unit names can be arbitrary
 */
 message Unit {
-	string name = 1;
-	string description = 2;
+	string id = 1;
+	string name = 2;
+	string description = 3;
 }
 
 /** Dataframe consists of two dimensions 
-* and a set of vectors
+* and a set of vectors (contents)
 * units is an unstructured flag specifying the value of a cell
 * any restrictions on units should be defined in metadata
 * order of heterogenous vectors should correspond to order of
@@ -71,20 +61,5 @@ message DataFrame {
 	Dimension minor = 3;
 	repeated Unit units = 4;
 	map<string, string> metadata = 5;
-	repeated Vector contents = 6;
-}
-
-/** Special key: value map 
-* This is one cell in a DataFrame (an element of vector content list). 
-* value type should be enforced based on DataFrame.units
-**/
-message KeyValue {
-	string key = 1;
-	oneof value {
-		float float_data = 2;
-		string str_data = 3;
-		bool bool_data = 4;
-		int32 int_data = 5; 
-		sint32 sint_data = 6;
-	}
+	map<string, google.protobuf.Struct> contents = 6;
 }

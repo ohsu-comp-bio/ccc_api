@@ -2,49 +2,25 @@ syntax = "proto3";
 
 package framespace;
 import "proto/framespace/framespace.proto";
-import "google/api/annotations.proto";
+// import "google/protobuf/field_mask.proto";
 
 service FrameSpaceService {
 
   // Gets a list of available axes 
-  rpc SearchAxes(SearchAxesRequest) returns (SearchAxesResponse) {
-    option (google.api.http) = {
-      post: "/v1/frame/axes/search"
-      body: "*"
-    };
-  }
+  rpc SearchAxes(SearchAxesRequest) returns (SearchAxesResponse);
 
   // Gets a list of available KeySpaces for an axis
-  rpc SearchKeySpaces(SearchKeySpacesRequest) returns (SearchKeySpacesResponse) {
-    option (google.api.http) = {
-      post: "/v1/frame/keyspaces/search"
-      body: "*"
-    };
-  }
+  // Does not return keys
+  rpc SearchKeySpaces(SearchKeySpacesRequest) returns (SearchKeySpacesResponse);
 
   // Gets a list of available Units of measurement 
-  rpc SearchUnits(SearchUnitsRequest) returns (SearchUnitsResponse) {
-    option (google.api.http) = {
-      post: "/v1/frame/units/search"
-      body: "*"
-    };
-  }
+  rpc SearchUnits(SearchUnitsRequest) returns (SearchUnitsResponse);
 
   // Get a list of DataFrames
-  rpc SearchDataFrames(SearchDataFramesRequest) returns (SearchDataFramesResponse) {
-    option(google.api.http) = {
-      post: "/v1/frame/dataframes/search"
-      body: "*"
-    };
-  }
+  rpc SearchDataFrames(SearchDataFramesRequest) returns (SearchDataFramesResponse);
 
   // Subset a DataFrame
-  rpc SliceDataFrame(SliceDataFrameRequest) returns (DataFrame) {
-    option(google.api.http) = {
-      post: "/v1/frame/dataframe/slice"
-      body: "*"
-    };
-  }
+  rpc SliceDataFrame(SliceDataFrameRequest) returns (DataFrame);
 
 }
 
@@ -67,7 +43,7 @@ search by name, axis, and keys
 restrictive get by id 
 */
 message SearchKeySpacesRequest {
-  repeated int32 keyspace_ids = 1;
+  repeated string keyspace_ids = 1;
   repeated string names = 2;
   repeated string axis_names = 3;
   repeated string keys = 4;
@@ -85,8 +61,10 @@ search for available units of measurement
 available in FrameSpace
 */ 
 message SearchUnitsRequest {
-  repeated int32 names = 1;
-  repeated string types = 2;
+  repeated string ids = 1;
+  repeated string names = 2;
+  int32 page_size = 3;
+  string page_token = 4;
 }
 
 message SearchUnitsResponse {
@@ -100,12 +78,14 @@ search for DataFrames associated with the following units of measurement
 */
 message SearchDataFramesRequest {
   repeated string dataframe_ids = 1;
-  repeated int32 keyspace_ids = 2;
-  repeated Unit units = 3;
+  repeated string keyspace_ids = 2;
+  repeated string unit_ids = 3;
   int32 page_size = 4;
   string page_token = 5;
 }
 
+// By default, the vector contents of a search dataframes response
+// are not returned. The contents should be returned from a dataframe slice
 message SearchDataFramesResponse {
   repeated DataFrame dataframes = 1;
   string next_page_token = 2;
@@ -119,4 +99,6 @@ message SliceDataFrameRequest {
   string dataframe_id = 1;
   Dimension new_major = 2;
   Dimension new_minor = 3;
+  int32 page_start = 4;
+  int32 page_end = 5;
 }
