@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package framespace;
 import "proto/framespace/framespace.proto";
+import "google/api/annotations.proto";
 
 service FrameSpaceService {
 
