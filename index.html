@@ -1,0 +1,922 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>proto/framespace/framespace_service.proto</title>
+    <style type="text/css">
+      body { 
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+	display: none;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+    </style>
+  </head>
+  <body>
+  <h1>proto/framespace/framespace_service.proto</h1>
+    <div class="app-desc">A sample swagger server</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: version not set</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+  
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  
+  <h2>Table of Contents </h2>
+  <div class="method-summary"></div>
+  
+  <ol>
+  
+  
+  
+  <li><a href="#searchAxes"><code><span class="http-method">post</span> /v1/frame/axes/search</code></a></li>
+  
+  <li><a href="#searchDataFrames"><code><span class="http-method">post</span> /v1/frame/dataframes/search</code></a></li>
+  
+  <li><a href="#searchKeySpaces"><code><span class="http-method">post</span> /v1/frame/keyspaces/search</code></a></li>
+  
+  <li><a href="#searchUnits"><code><span class="http-method">post</span> /v1/frame/units/search</code></a></li>
+  
+  <li><a href="#sliceDataFrame"><code><span class="http-method">post</span> /v1/frame/dataframe/slice</code></a></li>
+  
+  
+  
+  </ol>
+  
+
+  
+  
+  
+  
+  <div class="method"><a name="searchAxes"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/axes/search</code></pre></div>
+    <div class="method-summary">Gets a list of available axes (<span class="nickname">searchAxes</span>)</div>
+    
+    <div class="method-notes"></div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceSearchAxesResponse">framespaceSearchAxesResponse</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Description
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="searchDataFrames"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/dataframes/search</code></pre></div>
+    <div class="method-summary">Get a list of DataFrames (<span class="nickname">searchDataFrames</span>)</div>
+    
+    <div class="method-notes"></div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceSearchDataFramesResponse">framespaceSearchDataFramesResponse</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Description
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="searchKeySpaces"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/keyspaces/search</code></pre></div>
+    <div class="method-summary">Gets a list of available KeySpaces for an axis\nDoes not return keys (<span class="nickname">searchKeySpaces</span>)</div>
+    
+    <div class="method-notes"></div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceSearchKeySpacesResponse">framespaceSearchKeySpacesResponse</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Description
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="searchUnits"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/units/search</code></pre></div>
+    <div class="method-summary">Gets a list of available Units of measurement (<span class="nickname">searchUnits</span>)</div>
+    
+    <div class="method-notes"></div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceSearchUnitsResponse">framespaceSearchUnitsResponse</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Description
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="sliceDataFrame"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/dataframe/slice</code></pre></div>
+    <div class="method-summary">Subset a DataFrame (<span class="nickname">sliceDataFrame</span>)</div>
+    
+    <div class="method-notes"></div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">body (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceDataFrame">framespaceDataFrame</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    Description
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  
+  
+  
+
+  <div class="up"><a href="#__Models">Up</a></div>
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h2>Table of Contents</h2>
+  <ol>
+  
+  
+    <li><a href="#FramespaceAxis"><code>FramespaceAxis</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceDataFrame"><code>FramespaceDataFrame</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceDimension"><code>FramespaceDimension</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceKeySpace"><code>FramespaceKeySpace</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceSearchAxesRequest"><code>FramespaceSearchAxesRequest</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceSearchAxesResponse"><code>FramespaceSearchAxesResponse</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceSearchDataFramesRequest"><code>FramespaceSearchDataFramesRequest</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceSearchDataFramesResponse"><code>FramespaceSearchDataFramesResponse</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceSearchKeySpacesRequest"><code>FramespaceSearchKeySpacesRequest</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceSearchKeySpacesResponse"><code>FramespaceSearchKeySpacesResponse</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceSearchUnitsRequest"><code>FramespaceSearchUnitsRequest</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceSearchUnitsResponse"><code>FramespaceSearchUnitsResponse</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceSliceDataFrameRequest"><code>FramespaceSliceDataFrameRequest</code></a></li>
+  
+  
+  
+    <li><a href="#FramespaceUnit"><code>FramespaceUnit</code></a></li>
+  
+  
+  
+    <li><a href="#ProtobufListValue"><code>ProtobufListValue</code></a></li>
+  
+  
+  
+    <li><a href="#ProtobufNullValue"><code>ProtobufNullValue</code></a></li>
+  
+  
+  
+    <li><a href="#ProtobufStruct"><code>ProtobufStruct</code></a></li>
+  
+  
+  
+    <li><a href="#ProtobufValue"><code>ProtobufValue</code></a></li>
+  
+  
+  </ol>
+
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceAxis">FramespaceAxis</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">description </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceDataFrame">FramespaceDataFrame</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">contents </div><div class="param-desc"><span class="param-type">map[String, protobufStruct]</span> </div>
+      
+      <div class="param">id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">major </div><div class="param-desc"><span class="param-type">framespaceDimension</span> </div>
+      
+      <div class="param">metadata </div><div class="param-desc"><span class="param-type">map[String, String]</span> </div>
+      
+      <div class="param">minor </div><div class="param-desc"><span class="param-type">framespaceDimension</span> </div>
+      
+      <div class="param">units </div><div class="param-desc"><span class="param-type">array[framespaceUnit]</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceDimension">FramespaceDimension</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">keys </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">keyspace_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceKeySpace">FramespaceKeySpace</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">axis_name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">keys </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">metadata </div><div class="param-desc"><span class="param-type">map[String, String]</span> </div>
+      
+      <div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceSearchAxesRequest">FramespaceSearchAxesRequest</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">names </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">page_size </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">page_token </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceSearchAxesResponse">FramespaceSearchAxesResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">axes </div><div class="param-desc"><span class="param-type">array[framespaceAxis]</span> </div>
+      
+      <div class="param">next_page_token </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceSearchDataFramesRequest">FramespaceSearchDataFramesRequest</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">dataframe_ids </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">keyspace_ids </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">page_size </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">page_token </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">unit_ids </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceSearchDataFramesResponse">FramespaceSearchDataFramesResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">dataframes </div><div class="param-desc"><span class="param-type">array[framespaceDataFrame]</span> </div>
+      
+      <div class="param">next_page_token </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceSearchKeySpacesRequest">FramespaceSearchKeySpacesRequest</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">axis_names </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">keys </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">keyspace_ids </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">names </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">page_size </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">page_token </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceSearchKeySpacesResponse">FramespaceSearchKeySpacesResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">keyspaces </div><div class="param-desc"><span class="param-type">array[framespaceKeySpace]</span> </div>
+      
+      <div class="param">next_page_token </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceSearchUnitsRequest">FramespaceSearchUnitsRequest</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">ids </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">names </div><div class="param-desc"><span class="param-type">array[String]</span> </div>
+      
+      <div class="param">page_size </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">page_token </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceSearchUnitsResponse">FramespaceSearchUnitsResponse</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">next_page_token </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">units </div><div class="param-desc"><span class="param-type">array[framespaceUnit]</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceSliceDataFrameRequest">FramespaceSliceDataFrameRequest</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">dataframe_id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">new_major </div><div class="param-desc"><span class="param-type">framespaceDimension</span> </div>
+      
+      <div class="param">new_minor </div><div class="param-desc"><span class="param-type">framespaceDimension</span> </div>
+      
+      <div class="param">page_end </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      <div class="param">page_start </div><div class="param-desc"><span class="param-type">Integer</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="FramespaceUnit">FramespaceUnit</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">description </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">id </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      <div class="param">name </div><div class="param-desc"><span class="param-type">String</span> </div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="ProtobufListValue">ProtobufListValue</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">values </div><div class="param-desc"><span class="param-type">array[protobufValue]</span> Repeated field of dynamically typed values.</div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="ProtobufNullValue">ProtobufNullValue</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="ProtobufStruct">ProtobufStruct</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">fields </div><div class="param-desc"><span class="param-type">map[String, protobufValue]</span> Map of dynamically typed values.</div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  
+  <div class="model">
+    <h3 class="field-label"><a name="ProtobufValue">ProtobufValue</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class="field-items">
+      <div class="param">bool_value </div><div class="param-desc"><span class="param-type">Boolean</span> Represents a boolean value.</div>
+      
+      <div class="param">list_value </div><div class="param-desc"><span class="param-type">protobufListValue</span> Represents a repeated `Value`.</div>
+      
+      <div class="param">null_value </div><div class="param-desc"><span class="param-type">protobufNullValue</span> Represents a null value.</div>
+      
+      <div class="param">number_value </div><div class="param-desc"><span class="param-type">Double</span> Represents a double value.</div>
+      
+      <div class="param">string_value </div><div class="param-desc"><span class="param-type">String</span> Represents a string value.</div>
+      
+      <div class="param">struct_value </div><div class="param-desc"><span class="param-type">protobufStruct</span> Represents a structured value.</div>
+      
+      
+    </div>  <!-- field-items -->
+  </div>
+  
+  
+  </body>
+</html>
