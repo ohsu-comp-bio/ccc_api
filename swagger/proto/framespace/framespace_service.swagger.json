@@ -199,7 +199,7 @@
           }
         }
       },
-      "description": "* Dataframe consists of two dimensions \nand a set of vectors (contents)\nunits is an unstructured flag specifying the value of a cell\nany restrictions on units should be defined in metadata\norder of heterogenous vectors should correspond to order of\nunits in Unit list."
+      "description": "* Dataframe consists of two dimensions \nunits is an unstructured flag specifying the value of a cell\nany restrictions on units should be defined in metadata\norder of heterogenous vectors should correspond to order of\nunits in Unit list.\n\nthe struct object is protos equivalent of a python dict:\ndataframe.contents[contents_key][struct_key] = struct_value\nie. {'geneA': {'sample1': 0}}, would be populated as\ndataframe.contents['geneA']['sample1'] = 0"
     },
     "framespaceDimension": {
       "type": "object",
