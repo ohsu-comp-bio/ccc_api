@@ -21,7 +21,7 @@
         "operationId": "SearchAxes",
         "responses": {
           "200": {
-            "description": "Description",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/framespaceSearchAxesResponse"
             }
@@ -48,7 +48,7 @@
         "operationId": "SliceDataFrame",
         "responses": {
           "200": {
-            "description": "Description",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/framespaceDataFrame"
             }
@@ -75,7 +75,7 @@
         "operationId": "SearchDataFrames",
         "responses": {
           "200": {
-            "description": "Description",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/framespaceSearchDataFramesResponse"
             }
@@ -102,7 +102,7 @@
         "operationId": "SearchKeySpaces",
         "responses": {
           "200": {
-            "description": "Description",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/framespaceSearchKeySpacesResponse"
             }
@@ -129,7 +129,7 @@
         "operationId": "SearchUnits",
         "responses": {
           "200": {
-            "description": "Description",
+            "description": "",
             "schema": {
               "$ref": "#/definitions/framespaceSearchUnitsResponse"
             }
