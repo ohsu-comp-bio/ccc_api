@@ -1,14 +1,17 @@
 syntax = "proto3";
 
+//FrameSpace Service
+//
+// FrameSpace Service API consists of FrameSpace models
+// along with Request and Response objects for endpoints. 
 package framespace;
 
 import "google/protobuf/struct.proto";
 
-/** Axis Space 
-* Top level description of a dimension: 
-* Samples, Genomic Labels, Clinical Terms, etc.
-* Note: Experimental measurements are Units, not axes.
-**/
+
+// Axis represents the top level description of a KeySpace
+// such as Samples, Genomic Labels, Clinical Terms.
+// Note: Experimental measurements are Units, not axes. 
 message Axis {
 	string name = 1;
 	string description = 2;

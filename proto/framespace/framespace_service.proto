@@ -4,45 +4,63 @@ package framespace;
 import "proto/framespace/framespace.proto";
 import "google/api/annotations.proto";
 
+
+// FrameSpace Service is designed to retrieve matrix-like data
+// in a standard way.
 service FrameSpaceService {
 
-  // Gets a list of available axes 
+  // SearchAxes method recieves a SearchAxesRequest and returns a SearchAxesResponse.
+  //
+  // The request allows a client to request all axes or filter axes returned 
+  // based on the names filter attributes. 
   rpc SearchAxes(SearchAxesRequest) returns (SearchAxesResponse){
     option (google.api.http) = {
-      post: "/v1/frame/axes/search"
+      post: "/axes/search"
       body: "*"
     };
   }
 
-  // Gets a list of available KeySpaces for an axis
-  // Does not return keys
+  // SearchKeySpaces method recieves a SearchKeySpacesRequest and returns a SearchKeySpaces Response.
+  //
+  // The request allows a client to filter keyspaces returned from a set of axis names, 
+  // keyspace ids, or keyspace names. 
   rpc SearchKeySpaces(SearchKeySpacesRequest) returns (SearchKeySpacesResponse){
     option (google.api.http) = {
-      post: "/v1/frame/keyspaces/search"
+      post: "/keyspaces/search"
       body: "*"
     };
   }
 
-  // Gets a list of available Units of measurement 
+  // SearchUnits method recieves a SearchUnitsRequest and returns a SearchUnitsResponse.
+  //
+  // The request allows a client to request all units or filter units returned by unit ids, 
+  // or unit names.
   rpc SearchUnits(SearchUnitsRequest) returns (SearchUnitsResponse){
     option (google.api.http) = {
-      post: "/v1/frame/units/search"
+      post: "/units/search"
       body: "*"
     };
   }
 
-  // Get a list of DataFrames
+  // SearchDataFrame method recieves a SearchDataFrameRequest and returns a SearchDataFrameResponse.
+  //
+  // The request allows a client to request dataframes based on keyspace ids, dataframe ids, or
+  // unit ids. One keyspace id must be provided in order to return a list of available dataframes. 
   rpc SearchDataFrames(SearchDataFramesRequest) returns (SearchDataFramesResponse){
     option (google.api.http) = {
-      post: "/v1/frame/dataframes/search"
+      post: "/dataframes/search"
       body: "*"
     };
   }
 
-  // Subset a DataFrame
+  // SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.
+  //
+  // The request allows a client to request a specific dataframe specified by the requried dataframe id.
+  // Dimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. 
+  // Pagination can occur by specifying pageStart and pageEnd based on users needs. 
   rpc SliceDataFrame(SliceDataFrameRequest) returns (DataFrame){
     option (google.api.http) = {
-      post: "/v1/frame/dataframe/slice"
+      post: "/dataframe/slice"
       body: "*"
     };
   }

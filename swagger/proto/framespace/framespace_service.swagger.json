@@ -15,9 +15,10 @@
     "application/json"
   ],
   "paths": {
-    "/v1/frame/axes/search": {
+    "/axes/search": {
       "post": {
-        "summary": "Gets a list of available axes",
+        "summary": "SearchAxes method recieves a SearchAxesRequest and returns a SearchAxesResponse.",
+        "description": "The request allows a client to request all axes or filter axes returned \nbased on the names filter attributes.",
         "operationId": "SearchAxes",
         "responses": {
           "200": {
@@ -42,9 +43,10 @@
         ]
       }
     },
-    "/v1/frame/dataframe/slice": {
+    "/dataframe/slice": {
       "post": {
-        "summary": "Subset a DataFrame",
+        "summary": "SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.",
+        "description": "The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.",
         "operationId": "SliceDataFrame",
         "responses": {
           "200": {
@@ -69,9 +71,10 @@
         ]
       }
     },
-    "/v1/frame/dataframes/search": {
+    "/dataframes/search": {
       "post": {
-        "summary": "Get a list of DataFrames",
+        "summary": "SearchDataFrame method recieves a SearchDataFrameRequest and returns a SearchDataFrameResponse.",
+        "description": "The request allows a client to request dataframes based on keyspace ids, dataframe ids, or\nunit ids. One keyspace id must be provided in order to return a list of available dataframes.",
         "operationId": "SearchDataFrames",
         "responses": {
           "200": {
@@ -96,9 +99,10 @@
         ]
       }
     },
-    "/v1/frame/keyspaces/search": {
+    "/keyspaces/search": {
       "post": {
-        "summary": "Gets a list of available KeySpaces for an axis\nDoes not return keys",
+        "summary": "SearchKeySpaces method recieves a SearchKeySpacesRequest and returns a SearchKeySpaces Response.",
+        "description": "The request allows a client to filter keyspaces returned from a set of axis names, \nkeyspace ids, or keyspace names.",
         "operationId": "SearchKeySpaces",
         "responses": {
           "200": {
@@ -123,9 +127,10 @@
         ]
       }
     },
-    "/v1/frame/units/search": {
+    "/units/search": {
       "post": {
-        "summary": "Gets a list of available Units of measurement",
+        "summary": "SearchUnits method recieves a SearchUnitsRequest and returns a SearchUnitsResponse.",
+        "description": "The request allows a client to request all units or filter units returned by unit ids, \nor unit names.",
         "operationId": "SearchUnits",
         "responses": {
           "200": {
@@ -164,7 +169,7 @@
           "format": "string"
         }
       },
-      "description": "* Axis Space \nTop level description of a dimension: \nSamples, Genomic Labels, Clinical Terms, etc.\nNote: Experimental measurements are Units, not axes."
+      "description": "Axis represents the top level description of a KeySpace\nsuch as Samples, Genomic Labels, Clinical Terms.\nNote: Experimental measurements are Units, not axes."
     },
     "framespaceDataFrame": {
       "type": "object",
