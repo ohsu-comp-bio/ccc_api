@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-//FrameSpace Service
+// FrameSpace Service
 //
 // FrameSpace Service API consists of FrameSpace models
 // along with Request and Response objects for endpoints. 
@@ -17,25 +17,24 @@ message Axis {
 	string description = 2;
 }
 
-/* POST /axes/search 
-* search by name
-*/
+// SearchAxesRequest is a POST to /axes/search 
+// Search criteria: all axes or search by axis name.
 message SearchAxesRequest {
   repeated string names = 1;
   int32 page_size = 2;
   string page_token = 3;
 }
 
+// SearchAxesResponse returned from /axes/search
 message SearchAxesResponse {
   repeated Axis axes = 1;
   string next_page_token = 2;
 }
 
-/** KeySpace is the set of keys that a project has defined, 
-* for a given AxisSpace, Example: (sample1, sample2, sample3).
-* Restrictions on keys could be defined in the metadata field.
-* A key is defined as an entity identifier. 
-**/
+// KeySpace is the set of keys that a project has defined, 
+// for a given axis space, Example: (sample1, sample2, sample3).
+// Restrictions on keys can be defined in the metadata field.
+// A key is defined as an entity identifier. 
 message KeySpace {
 	string id = 1;
 	string name = 2;
@@ -44,10 +43,9 @@ message KeySpace {
 	map<string, string> metadata = 5;
 }
 
-/* POST /keyspaces/search 
-search by name, axis, and keys
-restrictive get by id 
-*/
+// SearchKeySpacesRequest is a POST to /keyspaces/search 
+// Search criteria: search by keyspace name/id, axis name, and keys.
+// An axis name is required in the request.
 message SearchKeySpacesRequest {
   repeated string keyspace_ids = 1;
   repeated string names = 2;
@@ -57,36 +55,32 @@ message SearchKeySpacesRequest {
   string page_token = 6;
 }
 
+// SearchKeySpacesResponse returned from /keyspaces/search
 message SearchKeySpacesResponse {
   repeated KeySpace keyspaces = 1;
   string next_page_token = 2;
 }
 
-/** Dimension is a subset of keys from a KeySpace 
-* axis space inherited from keyspace
-* keys, is the actual subset list
-* a key must belong to a keyspace
-**/
+// Dimension is a subset of keys from a KeySpace.
+// Actual subset is defined by the keys list. 
+// A key in a dimension must belong to the keyspace identifed by id.
 message Dimension {
 	string keyspace_id = 1;
 	repeated string keys = 2;
 }
 
-/* Unit is a basic message enforcing:
-* a label specifying what the measurement is
-* a description to identify specific info about this measurement
-* Units have ids unlike axes because unit names can be arbitrary
-*/
+// Unit is a basic message enforcing a label naming the measurement,
+// a description to identify specific info about this measurement.
+// Units have ids because unit names can be arbitary.
 message Unit {
 	string id = 1;
 	string name = 2;
 	string description = 3;
 }
 
-/* POST /units/search
-search for available units of measurement
-available in FrameSpace
-*/ 
+// SearchUnitsRequest is a POST to /units/search
+// Search for available units of measurement.
+// Search criteria: all units, filter by unit id/name.
 message SearchUnitsRequest {
   repeated string ids = 1;
   repeated string names = 2;
@@ -94,22 +88,21 @@ message SearchUnitsRequest {
   string page_token = 4;
 }
 
+// SearchUnitsResponse is returned from /units/search
 message SearchUnitsResponse {
   repeated Unit units = 1;
   string next_page_token = 2;
 }
 
-/** Dataframe consists of two dimensions 
-* units is an unstructured flag specifying the value of a cell
-* any restrictions on units should be defined in metadata
-* order of heterogenous vectors should correspond to order of
-* units in Unit list.
-*
-* the struct object is protos equivalent of a python dict:
-* dataframe.contents[contents_key][struct_key] = struct_value
-* ie. {'geneA': {'sample1': 0}}, would be populated as
-* dataframe.contents['geneA']['sample1'] = 0
-**/
+// Dataframe consists of two dimensions. 
+// units is a flag specifying the value of a cell.
+// Any restrictions on units should be defined in metadata.
+// The order of heterogenous vectors should correspond to order of
+// units in Unit list.
+// The struct object is protos equivalent of a python dict:
+// dataframe.contents[contents_key][struct_key] = struct_value
+// ie. {'geneA': {'sample1': 0}}, would be populated as
+// dataframe.contents['geneA']['sample1'] = 0
 message DataFrame {
   string id = 1;
   Dimension major = 2;
@@ -119,10 +112,9 @@ message DataFrame {
   map<string, google.protobuf.Struct> contents = 6;
 }
 
-/* POST /dataframes/search 
-search for DataFrames associated with the following keyspaces
-search for DataFrames associated with the following units of measurement
-*/
+// DataFramesRequest is a POST to /dataframes/search 
+// Search criteria: search for dataframes from a given keyspace(s), 
+// filter by dataframe ids, and unit ids. At least one keyspaceId required.
 message SearchDataFramesRequest {
   repeated string dataframe_ids = 1;
   repeated string keyspace_ids = 2;
@@ -131,17 +123,18 @@ message SearchDataFramesRequest {
   string page_token = 5;
 }
 
+// SearchDataFramesResponse is returned from /dataframes/search
 // By default, the vector contents of a search dataframes response
-// are not returned. The contents should be returned from a dataframe slice
+// are not returned. The contents should be returned from a dataframe slice.
 message SearchDataFramesResponse {
   repeated DataFrame dataframes = 1;
   string next_page_token = 2;
 }
 
-/* POST /dataframe/slice 
-Given an id return a slice based on the following dimensions
-Client creates a list of keys as a new dimension.
-*/
+// SliceDataFrameRequest is a POST to /dataframe/slice 
+// Given an id return a slice based on the following dimensions.
+// Client creates a list of keys as a new dimension, if desired.
+// Subsetting / pagination can be performed by page_start and page_end.
 message SliceDataFrameRequest {
   string dataframe_id = 1;
   Dimension new_major = 2;

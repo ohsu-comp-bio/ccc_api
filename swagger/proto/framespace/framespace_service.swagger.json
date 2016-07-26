@@ -204,7 +204,7 @@
           }
         }
       },
-      "description": "* Dataframe consists of two dimensions \nunits is an unstructured flag specifying the value of a cell\nany restrictions on units should be defined in metadata\norder of heterogenous vectors should correspond to order of\nunits in Unit list.\n\nthe struct object is protos equivalent of a python dict:\ndataframe.contents[contents_key][struct_key] = struct_value\nie. {'geneA': {'sample1': 0}}, would be populated as\ndataframe.contents['geneA']['sample1'] = 0"
+      "title": "Dataframe consists of two dimensions. \nunits is a flag specifying the value of a cell.\nAny restrictions on units should be defined in metadata.\nThe order of heterogenous vectors should correspond to order of\nunits in Unit list.\nThe struct object is protos equivalent of a python dict:\ndataframe.contents[contents_key][struct_key] = struct_value\nie. {'geneA': {'sample1': 0}}, would be populated as\ndataframe.contents['geneA']['sample1'] = 0"
     },
     "framespaceDimension": {
       "type": "object",
@@ -221,7 +221,7 @@
           "format": "string"
         }
       },
-      "title": "* Dimension is a subset of keys from a KeySpace \naxis space inherited from keyspace\nkeys, is the actual subset list\na key must belong to a keyspace"
+      "description": "Dimension is a subset of keys from a KeySpace.\nActual subset is defined by the keys list. \nA key in a dimension must belong to the keyspace identifed by id."
     },
     "framespaceKeySpace": {
       "type": "object",
@@ -253,7 +253,7 @@
           "format": "string"
         }
       },
-      "description": "* KeySpace is the set of keys that a project has defined, \nfor a given AxisSpace, Example: (sample1, sample2, sample3).\nRestrictions on keys could be defined in the metadata field.\nA key is defined as an entity identifier."
+      "description": "KeySpace is the set of keys that a project has defined, \nfor a given axis space, Example: (sample1, sample2, sample3).\nRestrictions on keys can be defined in the metadata field.\nA key is defined as an entity identifier."
     },
     "framespaceSearchAxesRequest": {
       "type": "object",
@@ -274,7 +274,7 @@
           "format": "string"
         }
       },
-      "title": "POST /axes/search \nsearch by name"
+      "description": "SearchAxesRequest is a POST to /axes/search \nSearch criteria: all axes or search by axis name."
     },
     "framespaceSearchAxesResponse": {
       "type": "object",
@@ -289,7 +289,8 @@
           "type": "string",
           "format": "string"
         }
-      }
+      },
+      "title": "SearchAxesResponse returned from /axes/search"
     },
     "framespaceSearchDataFramesRequest": {
       "type": "object",
@@ -324,7 +325,7 @@
           }
         }
       },
-      "title": "POST /dataframes/search \nsearch for DataFrames associated with the following keyspaces\nsearch for DataFrames associated with the following units of measurement"
+      "description": "DataFramesRequest is a POST to /dataframes/search \nSearch criteria: search for dataframes from a given keyspace(s), \nfilter by dataframe ids, and unit ids. At least one keyspaceId required."
     },
     "framespaceSearchDataFramesResponse": {
       "type": "object",
@@ -340,7 +341,7 @@
           "format": "string"
         }
       },
-      "title": "By default, the vector contents of a search dataframes response\nare not returned. The contents should be returned from a dataframe slice"
+      "description": "SearchDataFramesResponse is returned from /dataframes/search\nBy default, the vector contents of a search dataframes response\nare not returned. The contents should be returned from a dataframe slice."
     },
     "framespaceSearchKeySpacesRequest": {
       "type": "object",
@@ -382,7 +383,7 @@
           "format": "string"
         }
       },
-      "title": "POST /keyspaces/search \nsearch by name, axis, and keys\nrestrictive get by id"
+      "description": "SearchKeySpacesRequest is a POST to /keyspaces/search \nSearch criteria: search by keyspace name/id, axis name, and keys.\nAn axis name is required in the request."
     },
     "framespaceSearchKeySpacesResponse": {
       "type": "object",
@@ -397,7 +398,8 @@
           "type": "string",
           "format": "string"
         }
-      }
+      },
+      "title": "SearchKeySpacesResponse returned from /keyspaces/search"
     },
     "framespaceSearchUnitsRequest": {
       "type": "object",
@@ -425,7 +427,7 @@
           "format": "string"
         }
       },
-      "title": "POST /units/search\nsearch for available units of measurement\navailable in FrameSpace"
+      "description": "SearchUnitsRequest is a POST to /units/search\nSearch for available units of measurement.\nSearch criteria: all units, filter by unit id/name."
     },
     "framespaceSearchUnitsResponse": {
       "type": "object",
@@ -440,7 +442,8 @@
             "$ref": "#/definitions/framespaceUnit"
           }
         }
-      }
+      },
+      "title": "SearchUnitsResponse is returned from /units/search"
     },
     "framespaceSliceDataFrameRequest": {
       "type": "object",
@@ -464,7 +467,7 @@
           "format": "int32"
         }
       },
-      "description": "POST /dataframe/slice \nGiven an id return a slice based on the following dimensions\nClient creates a list of keys as a new dimension."
+      "description": "SliceDataFrameRequest is a POST to /dataframe/slice \nGiven an id return a slice based on the following dimensions.\nClient creates a list of keys as a new dimension, if desired.\nSubsetting / pagination can be performed by page_start and page_end."
     },
     "framespaceUnit": {
       "type": "object",
@@ -482,7 +485,7 @@
           "format": "string"
         }
       },
-      "title": "Unit is a basic message enforcing:\na label specifying what the measurement is\na description to identify specific info about this measurement\nUnits have ids unlike axes because unit names can be arbitrary"
+      "description": "Unit is a basic message enforcing a label naming the measurement,\na description to identify specific info about this measurement.\nUnits have ids because unit names can be arbitary."
     },
     "protobufListValue": {
       "type": "object",
