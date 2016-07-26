@@ -18,7 +18,7 @@ message Axis {
 }
 
 /* POST /axes/search 
-search by name
+* search by name
 */
 message SearchAxesRequest {
   repeated string names = 1;
@@ -111,12 +111,12 @@ message SearchUnitsResponse {
 * dataframe.contents['geneA']['sample1'] = 0
 **/
 message DataFrame {
-	string id = 1;
-	Dimension major = 2;
-	Dimension minor = 3;
-	repeated Unit units = 4;
-	map<string, string> metadata = 5;
-	map<string, google.protobuf.Struct> contents = 6;
+  string id = 1;
+  Dimension major = 2;
+  Dimension minor = 3;
+  repeated Unit units = 4;
+  map<string, string> metadata = 5;
+  map<string, google.protobuf.Struct> contents = 6;
 }
 
 /* POST /dataframes/search 
