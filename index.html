@@ -202,15 +202,15 @@ font-style: italic;
   
   
   
-  <li><a href="#searchAxes"><code><span class="http-method">post</span> /v1/frame/axes/search</code></a></li>
+  <li><a href="#searchAxes"><code><span class="http-method">post</span> /axes/search</code></a></li>
   
-  <li><a href="#searchDataFrames"><code><span class="http-method">post</span> /v1/frame/dataframes/search</code></a></li>
+  <li><a href="#searchDataFrames"><code><span class="http-method">post</span> /dataframes/search</code></a></li>
   
-  <li><a href="#searchKeySpaces"><code><span class="http-method">post</span> /v1/frame/keyspaces/search</code></a></li>
+  <li><a href="#searchKeySpaces"><code><span class="http-method">post</span> /keyspaces/search</code></a></li>
   
-  <li><a href="#searchUnits"><code><span class="http-method">post</span> /v1/frame/units/search</code></a></li>
+  <li><a href="#searchUnits"><code><span class="http-method">post</span> /units/search</code></a></li>
   
-  <li><a href="#sliceDataFrame"><code><span class="http-method">post</span> /v1/frame/dataframe/slice</code></a></li>
+  <li><a href="#sliceDataFrame"><code><span class="http-method">post</span> /dataframe/slice</code></a></li>
   
   
   
@@ -224,10 +224,10 @@ font-style: italic;
   <div class="method"><a name="searchAxes"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/axes/search</code></pre></div>
-    <div class="method-summary">Gets a list of available axes (<span class="nickname">searchAxes</span>)</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /axes/search</code></pre></div>
+    <div class="method-summary">SearchAxes method recieves a SearchAxesRequest and returns a SearchAxesResponse. (<span class="nickname">searchAxes</span>)</div>
     
-    <div class="method-notes"></div>
+    <div class="method-notes">The request allows a client to request all axes or filter axes returned \nbased on the names filter attributes.</div>
 
     
 
@@ -282,7 +282,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     
     <h4 class="field-label">200</h4>
-    Description
+    
     
     
   </div> <!-- method -->
@@ -291,10 +291,10 @@ font-style: italic;
   <div class="method"><a name="searchDataFrames"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/dataframes/search</code></pre></div>
-    <div class="method-summary">Get a list of DataFrames (<span class="nickname">searchDataFrames</span>)</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /dataframes/search</code></pre></div>
+    <div class="method-summary">SearchDataFrame method recieves a SearchDataFrameRequest and returns a SearchDataFrameResponse. (<span class="nickname">searchDataFrames</span>)</div>
     
-    <div class="method-notes"></div>
+    <div class="method-notes">The request allows a client to request dataframes based on keyspace ids, dataframe ids, or\nunit ids. One keyspace id must be provided in order to return a list of available dataframes.</div>
 
     
 
@@ -349,7 +349,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     
     <h4 class="field-label">200</h4>
-    Description
+    
     
     
   </div> <!-- method -->
@@ -358,10 +358,10 @@ font-style: italic;
   <div class="method"><a name="searchKeySpaces"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/keyspaces/search</code></pre></div>
-    <div class="method-summary">Gets a list of available KeySpaces for an axis\nDoes not return keys (<span class="nickname">searchKeySpaces</span>)</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /keyspaces/search</code></pre></div>
+    <div class="method-summary">SearchKeySpaces method recieves a SearchKeySpacesRequest and returns a SearchKeySpaces Response. (<span class="nickname">searchKeySpaces</span>)</div>
     
-    <div class="method-notes"></div>
+    <div class="method-notes">The request allows a client to filter keyspaces returned from a set of axis names, \nkeyspace ids, or keyspace names.</div>
 
     
 
@@ -416,7 +416,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     
     <h4 class="field-label">200</h4>
-    Description
+    
     
     
   </div> <!-- method -->
@@ -425,10 +425,10 @@ font-style: italic;
   <div class="method"><a name="searchUnits"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/units/search</code></pre></div>
-    <div class="method-summary">Gets a list of available Units of measurement (<span class="nickname">searchUnits</span>)</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /units/search</code></pre></div>
+    <div class="method-summary">SearchUnits method recieves a SearchUnitsRequest and returns a SearchUnitsResponse. (<span class="nickname">searchUnits</span>)</div>
     
-    <div class="method-notes"></div>
+    <div class="method-notes">The request allows a client to request all units or filter units returned by unit ids, \nor unit names.</div>
 
     
 
@@ -483,7 +483,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     
     <h4 class="field-label">200</h4>
-    Description
+    
     
     
   </div> <!-- method -->
@@ -492,10 +492,10 @@ font-style: italic;
   <div class="method"><a name="sliceDataFrame"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
-    <pre class="post"><code class="huge"><span class="http-method">post</span> /v1/frame/dataframe/slice</code></pre></div>
-    <div class="method-summary">Subset a DataFrame (<span class="nickname">sliceDataFrame</span>)</div>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /dataframe/slice</code></pre></div>
+    <div class="method-summary">SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object. (<span class="nickname">sliceDataFrame</span>)</div>
     
-    <div class="method-notes"></div>
+    <div class="method-notes">The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.</div>
 
     
 
@@ -550,7 +550,7 @@ font-style: italic;
     <h3 class="field-label">Responses</h3>
     
     <h4 class="field-label">200</h4>
-    Description
+    
     
     
   </div> <!-- method -->
