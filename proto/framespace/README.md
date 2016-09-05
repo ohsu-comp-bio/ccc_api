@@ -68,3 +68,9 @@ Axis: Samples; KeySpace: sample_id; Keys: sample1, sample2, sample3
 ### Note about Clinical KeySpaces and the Associated Units
 
 For the sake of simplicity, the keys of a clinical KeySpace (birth_days_to, death_days_to, tumor_status) are also inferred to be unit names. 
+
+### Future Additions
+
+* FrameSpace Write API
+* DataFrames are a consolidation of vectors across one or multiple keyspaces. Currently, 1:1 relationship between DataFrame and TSV.
+* Indexing FrameSpace vectors in ElasticSearch
