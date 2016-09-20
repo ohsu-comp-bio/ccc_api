@@ -3,14 +3,13 @@ syntax = "proto3";
 package framespace;
 import "proto/framespace/framespace.proto";
 import "google/api/annotations.proto";
-import "google/protobuf/empty.proto";
 
 
 // FrameSpace Service is designed to retrieve matrix-like data
 // in a standard way.
 service FrameSpaceService {
 
-  // SearchAxes method recieves a SearchAxesRequest and returns a SearchAxesResponse.
+  // SearchAxes method receives a SearchAxesRequest and returns a SearchAxesResponse.
   //
   // The request allows a client to request all axes or filter axes returned 
   // based on the names filter attributes. 
@@ -24,7 +23,7 @@ service FrameSpaceService {
     };
   }
 
-  // GetAxesByName method recieves name from embedded URI and returns an axis response. 
+  // GetAxesByName method receives name from embedded URI and returns an axis response. 
   //
   // The request allows a client to request a single axis by name.
   // Note this enforces axes names to be unique.
@@ -34,7 +33,7 @@ service FrameSpaceService {
     };
   }
 
-  // SearchKeySpaces method recieves a SearchKeySpacesRequest and returns a SearchKeySpaces Response.
+  // SearchKeySpaces method receives a SearchKeySpacesRequest and returns a SearchKeySpaces Response.
   //
   // The request allows a client to filter keyspaces returned from a set of axis names, 
   // keyspace ids, or keyspace names. 
@@ -48,11 +47,16 @@ service FrameSpaceService {
     };
   }
 
-  // rpc GetKeySpacesById(KeySpace) return (KeySpace){
-    
-  // }
+  // GetKeySpacesById method receives keyspace id from embedded URI and returns a keyspaces response.
+  //
+  // The request allows a client to request a single keyspace by id.
+  rpc GetKeySpacesById(KeySpace) returns (KeySpace){
+    option (google.api.http) = {
+      get: "/keyspaces/{id}"
+    };
+  }
 
-  // SearchUnits method recieves a SearchUnitsRequest and returns a SearchUnitsResponse.
+  // SearchUnits method receives a SearchUnitsRequest and returns a SearchUnitsResponse.
   //
   // The request allows a client to request all units or filter units returned by unit ids, 
   // or unit names.
@@ -60,10 +64,22 @@ service FrameSpaceService {
     option (google.api.http) = {
       post: "/units/search"
       body: "*"
+      additional_bindings: {
+        get: "/units"
+      }
     };
   }
 
-  // SearchDataFrame method recieves a SearchDataFrameRequest and returns a SearchDataFrameResponse.
+  // GetUnitsByName method receives a unit name from embedded URI and returns a unit response.
+  //
+  // The request allows a client to request a unit by name.
+  rpc GetUnitsByName(Unit) returns (Unit){
+    option (google.api.http) = {
+      get: "/units/{name}"
+    };
+  }
+
+  // SearchDataFrame method receives a SearchDataFrameRequest and returns a SearchDataFrameResponse.
   //
   // The request allows a client to request dataframes based on keyspace ids, dataframe ids, or
   // unit ids. One keyspace id must be provided in order to return a list of available dataframes. 
@@ -71,6 +87,9 @@ service FrameSpaceService {
     option (google.api.http) = {
       post: "/dataframes/search"
       body: "*"
+      additional_bindings: {
+        get: "/dataframes"
+      }
     };
   }
 
@@ -83,6 +102,12 @@ service FrameSpaceService {
     option (google.api.http) = {
       post: "/dataframe/slice"
       body: "*"
+      additional_bindings: {
+        get: "/dataframe/{dataframe_id}"
+      }
+      additional_bindings: {
+        get: "/dataframe/transpose/{dataframe_id}"
+      }
     };
   }
 
