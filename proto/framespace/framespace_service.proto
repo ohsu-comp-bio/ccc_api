@@ -3,6 +3,7 @@ syntax = "proto3";
 package framespace;
 import "proto/framespace/framespace.proto";
 import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
 
 
 // FrameSpace Service is designed to retrieve matrix-like data
@@ -17,6 +18,19 @@ service FrameSpaceService {
     option (google.api.http) = {
       post: "/axes/search"
       body: "*"
+      additional_bindings: {
+        get: "/axes"
+      }
+    };
+  }
+
+  // GetAxesByName method recieves name from embedded URI and returns an axis response. 
+  //
+  // The request allows a client to request a single axis by name.
+  // Note this enforces axes names to be unique.
+  rpc GetAxesByName(Axis) returns (Axis){
+    option (google.api.http) = {
+      get: "/axes/{name}"
     };
   }
 
@@ -28,8 +42,15 @@ service FrameSpaceService {
     option (google.api.http) = {
       post: "/keyspaces/search"
       body: "*"
+      additional_bindings: {
+        get: "/keyspaces"
+      }
     };
   }
+
+  // rpc GetKeySpacesById(KeySpace) return (KeySpace){
+    
+  // }
 
   // SearchUnits method recieves a SearchUnitsRequest and returns a SearchUnitsResponse.
   //
