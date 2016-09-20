@@ -15,9 +15,27 @@
     "application/json"
   ],
   "paths": {
+    "/axes": {
+      "get": {
+        "summary": "SearchAxes method receives a SearchAxesRequest and returns a SearchAxesResponse.",
+        "description": "The request allows a client to request all axes or filter axes returned \nbased on the names filter attributes.",
+        "operationId": "SearchAxes",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/framespaceSearchAxesResponse"
+            }
+          }
+        },
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
     "/axes/search": {
       "post": {
-        "summary": "SearchAxes method recieves a SearchAxesRequest and returns a SearchAxesResponse.",
+        "summary": "SearchAxes method receives a SearchAxesRequest and returns a SearchAxesResponse.",
         "description": "The request allows a client to request all axes or filter axes returned \nbased on the names filter attributes.",
         "operationId": "SearchAxes",
         "responses": {
@@ -36,6 +54,33 @@
             "schema": {
               "$ref": "#/definitions/framespaceSearchAxesRequest"
             }
+          }
+        ],
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
+    "/axes/{name}": {
+      "get": {
+        "summary": "GetAxesByName method receives name from embedded URI and returns an axis response.",
+        "description": "The request allows a client to request a single axis by name.\nNote this enforces axes names to be unique.",
+        "operationId": "GetAxesByName",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/framespaceAxis"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "string"
           }
         ],
         "tags": [
@@ -71,9 +116,81 @@
         ]
       }
     },
+    "/dataframe/transpose/{dataframe_id}": {
+      "get": {
+        "summary": "SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.",
+        "description": "The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.",
+        "operationId": "SliceDataFrame",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/framespaceDataFrame"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dataframe_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
+    "/dataframe/{dataframe_id}": {
+      "get": {
+        "summary": "SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.",
+        "description": "The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.",
+        "operationId": "SliceDataFrame",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/framespaceDataFrame"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "dataframe_id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
+    "/dataframes": {
+      "get": {
+        "summary": "SearchDataFrame method receives a SearchDataFrameRequest and returns a SearchDataFrameResponse.",
+        "description": "The request allows a client to request dataframes based on keyspace ids, dataframe ids, or\nunit ids. One keyspace id must be provided in order to return a list of available dataframes.",
+        "operationId": "SearchDataFrames",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/framespaceSearchDataFramesResponse"
+            }
+          }
+        },
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
     "/dataframes/search": {
       "post": {
-        "summary": "SearchDataFrame method recieves a SearchDataFrameRequest and returns a SearchDataFrameResponse.",
+        "summary": "SearchDataFrame method receives a SearchDataFrameRequest and returns a SearchDataFrameResponse.",
         "description": "The request allows a client to request dataframes based on keyspace ids, dataframe ids, or\nunit ids. One keyspace id must be provided in order to return a list of available dataframes.",
         "operationId": "SearchDataFrames",
         "responses": {
@@ -99,9 +216,27 @@
         ]
       }
     },
+    "/keyspaces": {
+      "get": {
+        "summary": "SearchKeySpaces method receives a SearchKeySpacesRequest and returns a SearchKeySpaces Response.",
+        "description": "The request allows a client to filter keyspaces returned from a set of axis names, \nkeyspace ids, or keyspace names.",
+        "operationId": "SearchKeySpaces",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/framespaceSearchKeySpacesResponse"
+            }
+          }
+        },
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
     "/keyspaces/search": {
       "post": {
-        "summary": "SearchKeySpaces method recieves a SearchKeySpacesRequest and returns a SearchKeySpaces Response.",
+        "summary": "SearchKeySpaces method receives a SearchKeySpacesRequest and returns a SearchKeySpaces Response.",
         "description": "The request allows a client to filter keyspaces returned from a set of axis names, \nkeyspace ids, or keyspace names.",
         "operationId": "SearchKeySpaces",
         "responses": {
@@ -127,9 +262,54 @@
         ]
       }
     },
+    "/keyspaces/{id}": {
+      "get": {
+        "summary": "GetKeySpacesById method receives keyspace id from embedded URI and returns a keyspaces response.",
+        "description": "The request allows a client to request a single keyspace by id.",
+        "operationId": "GetKeySpacesById",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/framespaceKeySpace"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "string"
+          }
+        ],
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
+    "/units": {
+      "get": {
+        "summary": "SearchUnits method receives a SearchUnitsRequest and returns a SearchUnitsResponse.",
+        "description": "The request allows a client to request all units or filter units returned by unit ids, \nor unit names.",
+        "operationId": "SearchUnits",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/framespaceSearchUnitsResponse"
+            }
+          }
+        },
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
     "/units/search": {
       "post": {
-        "summary": "SearchUnits method recieves a SearchUnitsRequest and returns a SearchUnitsResponse.",
+        "summary": "SearchUnits method receives a SearchUnitsRequest and returns a SearchUnitsResponse.",
         "description": "The request allows a client to request all units or filter units returned by unit ids, \nor unit names.",
         "operationId": "SearchUnits",
         "responses": {
@@ -148,6 +328,33 @@
             "schema": {
               "$ref": "#/definitions/framespaceSearchUnitsRequest"
             }
+          }
+        ],
+        "tags": [
+          "FrameSpaceService"
+        ]
+      }
+    },
+    "/units/{name}": {
+      "get": {
+        "summary": "GetUnitsByName method receives a unit name from embedded URI and returns a unit response.",
+        "description": "The request allows a client to request a unit by name.",
+        "operationId": "GetUnitsByName",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/framespaceUnit"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "string"
           }
         ],
         "tags": [

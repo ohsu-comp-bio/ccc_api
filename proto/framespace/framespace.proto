@@ -142,3 +142,5 @@ message SliceDataFrameRequest {
   int32 page_start = 4;
   int32 page_end = 5;
 }
+
+// CreateDataFrameRequest is a POST to a /dataframe/

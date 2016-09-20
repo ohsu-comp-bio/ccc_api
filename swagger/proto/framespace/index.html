@@ -202,15 +202,33 @@ font-style: italic;
   
   
   
-  <li><a href="#searchAxes"><code><span class="http-method">post</span> /axes/search</code></a></li>
+  <li><a href="#getAxesByName"><code><span class="http-method">get</span> /axes/{name}</code></a></li>
   
-  <li><a href="#searchDataFrames"><code><span class="http-method">post</span> /dataframes/search</code></a></li>
+  <li><a href="#getKeySpacesById"><code><span class="http-method">get</span> /keyspaces/{id}</code></a></li>
   
-  <li><a href="#searchKeySpaces"><code><span class="http-method">post</span> /keyspaces/search</code></a></li>
+  <li><a href="#getUnitsByName"><code><span class="http-method">get</span> /units/{name}</code></a></li>
   
-  <li><a href="#searchUnits"><code><span class="http-method">post</span> /units/search</code></a></li>
+  <li><a href="#searchAxes"><code><span class="http-method">get</span> /axes</code></a></li>
+  
+  <li><a href="#searchAxes_1"><code><span class="http-method">post</span> /axes/search</code></a></li>
+  
+  <li><a href="#searchDataFrames"><code><span class="http-method">get</span> /dataframes</code></a></li>
+  
+  <li><a href="#searchDataFrames_2"><code><span class="http-method">post</span> /dataframes/search</code></a></li>
+  
+  <li><a href="#searchKeySpaces"><code><span class="http-method">get</span> /keyspaces</code></a></li>
+  
+  <li><a href="#searchKeySpaces_3"><code><span class="http-method">post</span> /keyspaces/search</code></a></li>
+  
+  <li><a href="#searchUnits"><code><span class="http-method">get</span> /units</code></a></li>
+  
+  <li><a href="#searchUnits_4"><code><span class="http-method">post</span> /units/search</code></a></li>
   
   <li><a href="#sliceDataFrame"><code><span class="http-method">post</span> /dataframe/slice</code></a></li>
+  
+  <li><a href="#sliceDataFrame_5"><code><span class="http-method">get</span> /dataframe/transpose/{dataframe_id}</code></a></li>
+  
+  <li><a href="#sliceDataFrame_6"><code><span class="http-method">get</span> /dataframe/{dataframe_id}</code></a></li>
   
   
   
@@ -221,11 +239,272 @@ font-style: italic;
   
   
   
+  <div class="method"><a name="getAxesByName"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /axes/{name}</code></pre></div>
+    <div class="method-summary">GetAxesByName method receives name from embedded URI and returns an axis response. (<span class="nickname">getAxesByName</span>)</div>
+    
+    <div class="method-notes">The request allows a client to request a single axis by name.\nNote this enforces axes names to be unique.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceAxis">framespaceAxis</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="getKeySpacesById"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /keyspaces/{id}</code></pre></div>
+    <div class="method-summary">GetKeySpacesById method receives keyspace id from embedded URI and returns a keyspaces response. (<span class="nickname">getKeySpacesById</span>)</div>
+    
+    <div class="method-notes">The request allows a client to request a single keyspace by id.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceKeySpace">framespaceKeySpace</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="getUnitsByName"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /units/{name}</code></pre></div>
+    <div class="method-summary">GetUnitsByName method receives a unit name from embedded URI and returns a unit response. (<span class="nickname">getUnitsByName</span>)</div>
+    
+    <div class="method-notes">The request allows a client to request a unit by name.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceUnit">framespaceUnit</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
   <div class="method"><a name="searchAxes"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /axes</code></pre></div>
+    <div class="method-summary">SearchAxes method receives a SearchAxesRequest and returns a SearchAxesResponse. (<span class="nickname">searchAxes</span>)</div>
+    
+    <div class="method-notes">The request allows a client to request all axes or filter axes returned \nbased on the names filter attributes.</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceSearchAxesResponse">framespaceSearchAxesResponse</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="searchAxes_1"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /axes/search</code></pre></div>
-    <div class="method-summary">SearchAxes method recieves a SearchAxesRequest and returns a SearchAxesResponse. (<span class="nickname">searchAxes</span>)</div>
+    <div class="method-summary">SearchAxes method receives a SearchAxesRequest and returns a SearchAxesResponse. (<span class="nickname">searchAxes_1</span>)</div>
     
     <div class="method-notes">The request allows a client to request all axes or filter axes returned \nbased on the names filter attributes.</div>
 
@@ -291,8 +570,68 @@ font-style: italic;
   <div class="method"><a name="searchDataFrames"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /dataframes</code></pre></div>
+    <div class="method-summary">SearchDataFrame method receives a SearchDataFrameRequest and returns a SearchDataFrameResponse. (<span class="nickname">searchDataFrames</span>)</div>
+    
+    <div class="method-notes">The request allows a client to request dataframes based on keyspace ids, dataframe ids, or\nunit ids. One keyspace id must be provided in order to return a list of available dataframes.</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceSearchDataFramesResponse">framespaceSearchDataFramesResponse</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="searchDataFrames_2"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /dataframes/search</code></pre></div>
-    <div class="method-summary">SearchDataFrame method recieves a SearchDataFrameRequest and returns a SearchDataFrameResponse. (<span class="nickname">searchDataFrames</span>)</div>
+    <div class="method-summary">SearchDataFrame method receives a SearchDataFrameRequest and returns a SearchDataFrameResponse. (<span class="nickname">searchDataFrames_2</span>)</div>
     
     <div class="method-notes">The request allows a client to request dataframes based on keyspace ids, dataframe ids, or\nunit ids. One keyspace id must be provided in order to return a list of available dataframes.</div>
 
@@ -358,8 +697,68 @@ font-style: italic;
   <div class="method"><a name="searchKeySpaces"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /keyspaces</code></pre></div>
+    <div class="method-summary">SearchKeySpaces method receives a SearchKeySpacesRequest and returns a SearchKeySpaces Response. (<span class="nickname">searchKeySpaces</span>)</div>
+    
+    <div class="method-notes">The request allows a client to filter keyspaces returned from a set of axis names, \nkeyspace ids, or keyspace names.</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceSearchKeySpacesResponse">framespaceSearchKeySpacesResponse</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="searchKeySpaces_3"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /keyspaces/search</code></pre></div>
-    <div class="method-summary">SearchKeySpaces method recieves a SearchKeySpacesRequest and returns a SearchKeySpaces Response. (<span class="nickname">searchKeySpaces</span>)</div>
+    <div class="method-summary">SearchKeySpaces method receives a SearchKeySpacesRequest and returns a SearchKeySpaces Response. (<span class="nickname">searchKeySpaces_3</span>)</div>
     
     <div class="method-notes">The request allows a client to filter keyspaces returned from a set of axis names, \nkeyspace ids, or keyspace names.</div>
 
@@ -425,8 +824,68 @@ font-style: italic;
   <div class="method"><a name="searchUnits"/>
     <div class="method-path">
     <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /units</code></pre></div>
+    <div class="method-summary">SearchUnits method receives a SearchUnitsRequest and returns a SearchUnitsResponse. (<span class="nickname">searchUnits</span>)</div>
+    
+    <div class="method-notes">The request allows a client to request all units or filter units returned by unit ids, \nor unit names.</div>
+
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceSearchUnitsResponse">framespaceSearchUnitsResponse</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="searchUnits_4"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
     <pre class="post"><code class="huge"><span class="http-method">post</span> /units/search</code></pre></div>
-    <div class="method-summary">SearchUnits method recieves a SearchUnitsRequest and returns a SearchUnitsResponse. (<span class="nickname">searchUnits</span>)</div>
+    <div class="method-summary">SearchUnits method receives a SearchUnitsRequest and returns a SearchUnitsResponse. (<span class="nickname">searchUnits_4</span>)</div>
     
     <div class="method-notes">The request allows a client to request all units or filter units returned by unit ids, \nor unit names.</div>
 
@@ -516,6 +975,140 @@ font-style: italic;
 
       <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash;  </div>
     </div>  <!-- field-items -->
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceDataFrame">framespaceDataFrame</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="sliceDataFrame_5"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /dataframe/transpose/{dataframe_id}</code></pre></div>
+    <div class="method-summary">SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object. (<span class="nickname">sliceDataFrame_5</span>)</div>
+    
+    <div class="method-notes">The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">dataframe_id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#framespaceDataFrame">framespaceDataFrame</a>
+      
+    </div>
+    
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    
+
+    
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
+    <h3 class="field-label">Responses</h3>
+    
+    <h4 class="field-label">200</h4>
+    
+    
+    
+  </div> <!-- method -->
+  <hr/>
+  
+  <div class="method"><a name="sliceDataFrame_6"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /dataframe/{dataframe_id}</code></pre></div>
+    <div class="method-summary">SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object. (<span class="nickname">sliceDataFrame_6</span>)</div>
+    
+    <div class="method-notes">The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.</div>
+
+    
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">dataframe_id (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash;  </div>
+    </div>  <!-- field-items -->
+    
+
+    
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="heaader">Content-Type</span> request header:
+    <ul>
+    
+      <li><code>application/json</code></li>
+    
+    </ul>
+    
+
     
 
     
