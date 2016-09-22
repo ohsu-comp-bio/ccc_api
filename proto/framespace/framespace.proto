@@ -13,8 +13,8 @@ import "google/protobuf/struct.proto";
 // such as Samples, Genomic Labels, Clinical Terms.
 // Note: Experimental measurements are Units, not axes. 
 message Axis {
-	string name = 1;
-	string description = 2;
+  string name = 1;
+  string description = 2;
 }
 
 // SearchAxesRequest is a POST to /axes/search 
@@ -36,11 +36,11 @@ message SearchAxesResponse {
 // Restrictions on keys can be defined in the metadata field.
 // A key is defined as an entity identifier. 
 message KeySpace {
-	string id = 1;
-	string name = 2;
-	string axis_name = 3;
-	repeated string keys = 4;
-	map<string, string> metadata = 5;
+  string id = 1;
+  string name = 2;
+  string axis_name = 3;
+  repeated string keys = 4;
+  map<string, string> metadata = 5;
 }
 
 // SearchKeySpacesRequest is a POST to /keyspaces/search 
@@ -65,17 +65,17 @@ message SearchKeySpacesResponse {
 // Actual subset is defined by the keys list. 
 // A key in a dimension must belong to the keyspace identifed by id.
 message Dimension {
-	string keyspace_id = 1;
-	repeated string keys = 2;
+  string keyspace_id = 1;
+  repeated string keys = 2;
 }
 
 // Unit is a basic message enforcing a label naming the measurement,
 // a description to identify specific info about this measurement.
 // Units have ids because unit names can be arbitary.
 message Unit {
-	string id = 1;
-	string name = 2;
-	string description = 3;
+  string id = 1;
+  string name = 2;
+  string description = 3;
 }
 
 // SearchUnitsRequest is a POST to /units/search
