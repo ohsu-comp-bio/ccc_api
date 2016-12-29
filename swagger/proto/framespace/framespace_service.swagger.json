@@ -116,60 +116,6 @@
         ]
       }
     },
-    "/dataframe/transpose/{dataframe_id}": {
-      "get": {
-        "summary": "SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.",
-        "description": "The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.",
-        "operationId": "SliceDataFrame",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/framespaceDataFrame"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "dataframe_id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "string"
-          }
-        ],
-        "tags": [
-          "FrameSpaceService"
-        ]
-      }
-    },
-    "/dataframe/{dataframe_id}": {
-      "get": {
-        "summary": "SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.",
-        "description": "The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.",
-        "operationId": "SliceDataFrame",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/framespaceDataFrame"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "dataframe_id",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "string"
-          }
-        ],
-        "tags": [
-          "FrameSpaceService"
-        ]
-      }
-    },
     "/dataframes": {
       "get": {
         "summary": "SearchDataFrame method receives a SearchDataFrameRequest and returns a SearchDataFrameResponse.",
@@ -367,11 +313,11 @@
     "framespaceAxis": {
       "type": "object",
       "properties": {
-        "description": {
+        "name": {
           "type": "string",
           "format": "string"
         },
-        "name": {
+        "description": {
           "type": "string",
           "format": "string"
         }
@@ -381,25 +327,12 @@
     "framespaceDataFrame": {
       "type": "object",
       "properties": {
-        "contents": {
-          "type": "object",
-          "additionalProperties": {
-            "$ref": "#/definitions/protobufStruct"
-          }
-        },
         "id": {
           "type": "string",
           "format": "string"
         },
         "major": {
           "$ref": "#/definitions/framespaceDimension"
-        },
-        "metadata": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string",
-            "format": "string"
-          }
         },
         "minor": {
           "$ref": "#/definitions/framespaceDimension"
@@ -409,6 +342,19 @@
           "items": {
             "$ref": "#/definitions/framespaceUnit"
           }
+        },
+        "metadata": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "string"
+          }
+        },
+        "contents": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/protobufStruct"
+          }
         }
       },
       "title": "Dataframe consists of two dimensions. \nunits is a flag specifying the value of a cell.\nAny restrictions on units should be defined in metadata.\nThe order of heterogenous vectors should correspond to order of\nunits in Unit list.\nThe struct object is protos equivalent of a python dict:\ndataframe.contents[contents_key][struct_key] = struct_value\nie. {'geneA': {'sample1': 0}}, would be populated as\ndataframe.contents['geneA']['sample1'] = 0"
@@ -416,16 +362,16 @@
     "framespaceDimension": {
       "type": "object",
       "properties": {
+        "keyspace_id": {
+          "type": "string",
+          "format": "string"
+        },
         "keys": {
           "type": "array",
           "items": {
             "type": "string",
             "format": "string"
           }
-        },
-        "keyspace_id": {
-          "type": "string",
-          "format": "string"
         }
       },
       "description": "Dimension is a subset of keys from a KeySpace.\nActual subset is defined by the keys list. \nA key in a dimension must belong to the keyspace identifed by id."
@@ -433,11 +379,15 @@
     "framespaceKeySpace": {
       "type": "object",
       "properties": {
-        "axis_name": {
+        "id": {
           "type": "string",
           "format": "string"
         },
-        "id": {
+        "name": {
+          "type": "string",
+          "format": "string"
+        },
+        "axis_name": {
           "type": "string",
           "format": "string"
         },
@@ -454,10 +404,6 @@
             "type": "string",
             "format": "string"
           }
-        },
-        "name": {
-          "type": "string",
-          "format": "string"
         }
       },
       "description": "KeySpace is the set of keys that a project has defined, \nfor a given axis space, Example: (sample1, sample2, sample3).\nRestrictions on keys can be defined in the metadata field.\nA key is defined as an entity identifier."
@@ -516,6 +462,13 @@
             "format": "string"
           }
         },
+        "unit_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
+        },
         "page_size": {
           "type": "integer",
           "format": "int32"
@@ -523,13 +476,6 @@
         "page_token": {
           "type": "string",
           "format": "string"
-        },
-        "unit_ids": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          }
         }
       },
       "description": "DataFramesRequest is a POST to /dataframes/search \nSearch criteria: search for dataframes from a given keyspace(s), \nfilter by dataframe ids, and unit ids. At least one keyspaceId required."
@@ -553,20 +499,6 @@
     "framespaceSearchKeySpacesRequest": {
       "type": "object",
       "properties": {
-        "axis_names": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          }
-        },
-        "keys": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          }
-        },
         "keyspace_ids": {
           "type": "array",
           "items": {
@@ -575,6 +507,20 @@
           }
         },
         "names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
+        },
+        "axis_names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "string"
+          }
+        },
+        "keys": {
           "type": "array",
           "items": {
             "type": "string",
@@ -639,15 +585,15 @@
     "framespaceSearchUnitsResponse": {
       "type": "object",
       "properties": {
-        "next_page_token": {
-          "type": "string",
-          "format": "string"
-        },
         "units": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/framespaceUnit"
           }
+        },
+        "next_page_token": {
+          "type": "string",
+          "format": "string"
         }
       },
       "title": "SearchUnitsResponse is returned from /units/search"
@@ -655,21 +601,19 @@
     "framespaceSliceDataFrameRequest": {
       "type": "object",
       "properties": {
-        "dataframe_id": {
-          "type": "string",
-          "format": "string"
-        },
         "new_major": {
-          "$ref": "#/definitions/framespaceDimension"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceDimension"
+          }
         },
         "new_minor": {
-          "$ref": "#/definitions/framespaceDimension"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceDimension"
+          }
         },
-        "page_end": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "page_start": {
+        "page_size": {
           "type": "integer",
           "format": "int32"
         }
@@ -679,15 +623,15 @@
     "framespaceUnit": {
       "type": "object",
       "properties": {
-        "description": {
-          "type": "string",
-          "format": "string"
-        },
         "id": {
           "type": "string",
           "format": "string"
         },
         "name": {
+          "type": "string",
+          "format": "string"
+        },
+        "description": {
           "type": "string",
           "format": "string"
         }
@@ -731,15 +675,6 @@
     "protobufValue": {
       "type": "object",
       "properties": {
-        "bool_value": {
-          "type": "boolean",
-          "format": "boolean",
-          "description": "Represents a boolean value."
-        },
-        "list_value": {
-          "$ref": "#/definitions/protobufListValue",
-          "description": "Represents a repeated `Value`."
-        },
         "null_value": {
           "$ref": "#/definitions/protobufNullValue",
           "description": "Represents a null value."
@@ -754,9 +689,18 @@
           "format": "string",
           "description": "Represents a string value."
         },
+        "bool_value": {
+          "type": "boolean",
+          "format": "boolean",
+          "description": "Represents a boolean value."
+        },
         "struct_value": {
           "$ref": "#/definitions/protobufStruct",
           "description": "Represents a structured value."
+        },
+        "list_value": {
+          "$ref": "#/definitions/protobufListValue",
+          "description": "Represents a repeated `Value`."
         }
       },
       "description": "`Value` represents a dynamically typed value which can be either\nnull, a number, a string, a boolean, a recursive struct value, or a\nlist of values. A producer of value is expected to set one of that\nvariants, absence of any variant indicates an error.\n\nThe JSON representation for `Value` is JSON value."

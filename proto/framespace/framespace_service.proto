@@ -102,12 +102,12 @@ service FrameSpaceService {
     option (google.api.http) = {
       post: "/dataframe/slice"
       body: "*"
-      additional_bindings: {
-        get: "/dataframe/{dataframe_id}"
-      }
-      additional_bindings: {
-        get: "/dataframe/transpose/{dataframe_id}"
-      }
+      // additional_bindings: {
+      //   get: "/dataframe/{dataframe_id}"
+      // }
+      // additional_bindings: {
+      //   get: "/dataframe/transpose/{dataframe_id}"
+      // }
     };
   }
 
