@@ -88,11 +88,11 @@
         ]
       }
     },
-    "/dataframe/slice": {
+    "/dataframe": {
       "post": {
         "summary": "SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.",
         "description": "The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.",
-        "operationId": "SliceDataFrame",
+        "operationId": "BuildDataFrame",
         "responses": {
           "200": {
             "description": "",
@@ -107,53 +107,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/framespaceSliceDataFrameRequest"
-            }
-          }
-        ],
-        "tags": [
-          "FrameSpaceService"
-        ]
-      }
-    },
-    "/dataframes": {
-      "get": {
-        "summary": "SearchDataFrame method receives a SearchDataFrameRequest and returns a SearchDataFrameResponse.",
-        "description": "The request allows a client to request dataframes based on keyspace ids, dataframe ids, or\nunit ids. One keyspace id must be provided in order to return a list of available dataframes.",
-        "operationId": "SearchDataFrames",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/framespaceSearchDataFramesResponse"
-            }
-          }
-        },
-        "tags": [
-          "FrameSpaceService"
-        ]
-      }
-    },
-    "/dataframes/search": {
-      "post": {
-        "summary": "SearchDataFrame method receives a SearchDataFrameRequest and returns a SearchDataFrameResponse.",
-        "description": "The request allows a client to request dataframes based on keyspace ids, dataframe ids, or\nunit ids. One keyspace id must be provided in order to return a list of available dataframes.",
-        "operationId": "SearchDataFrames",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "$ref": "#/definitions/framespaceSearchDataFramesResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/framespaceSearchDataFramesRequest"
+              "$ref": "#/definitions/framespaceBuildDataFrameRequest"
             }
           }
         ],
@@ -324,24 +278,40 @@
       },
       "description": "Axis represents the top level description of a KeySpace\nsuch as Samples, Genomic Labels, Clinical Terms.\nNote: Experimental measurements are Units, not axes."
     },
-    "framespaceDataFrame": {
+    "framespaceBuildDataFrameRequest": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string",
-          "format": "string"
-        },
         "major": {
-          "$ref": "#/definitions/framespaceDimension"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceDimension"
+          }
         },
         "minor": {
-          "$ref": "#/definitions/framespaceDimension"
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/framespaceDimension"
+          }
         },
         "units": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/framespaceUnit"
           }
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "description": "BuildDataFrameRequest is a POST to /dataframe\nGiven an id return a slice based on the following dimensions.\nClient creates a list of keys as a new dimension, if desired.\nSubsetting / pagination can be performed by page_start and page_end."
+    },
+    "framespaceDataFrame": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "string"
         },
         "metadata": {
           "type": "object",
@@ -445,57 +415,6 @@
       },
       "title": "SearchAxesResponse returned from /axes/search"
     },
-    "framespaceSearchDataFramesRequest": {
-      "type": "object",
-      "properties": {
-        "dataframe_ids": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          }
-        },
-        "keyspace_ids": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          }
-        },
-        "unit_ids": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "string"
-          }
-        },
-        "page_size": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "page_token": {
-          "type": "string",
-          "format": "string"
-        }
-      },
-      "description": "DataFramesRequest is a POST to /dataframes/search \nSearch criteria: search for dataframes from a given keyspace(s), \nfilter by dataframe ids, and unit ids. At least one keyspaceId required."
-    },
-    "framespaceSearchDataFramesResponse": {
-      "type": "object",
-      "properties": {
-        "dataframes": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/framespaceDataFrame"
-          }
-        },
-        "next_page_token": {
-          "type": "string",
-          "format": "string"
-        }
-      },
-      "description": "SearchDataFramesResponse is returned from /dataframes/search\nBy default, the vector contents of a search dataframes response\nare not returned. The contents should be returned from a dataframe slice."
-    },
     "framespaceSearchKeySpacesRequest": {
       "type": "object",
       "properties": {
@@ -597,28 +516,6 @@
         }
       },
       "title": "SearchUnitsResponse is returned from /units/search"
-    },
-    "framespaceSliceDataFrameRequest": {
-      "type": "object",
-      "properties": {
-        "new_major": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/framespaceDimension"
-          }
-        },
-        "new_minor": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/framespaceDimension"
-          }
-        },
-        "page_size": {
-          "type": "integer",
-          "format": "int32"
-        }
-      },
-      "description": "SliceDataFrameRequest is a POST to /dataframe/slice \nGiven an id return a slice based on the following dimensions.\nClient creates a list of keys as a new dimension, if desired.\nSubsetting / pagination can be performed by page_start and page_end."
     },
     "framespaceUnit": {
       "type": "object",

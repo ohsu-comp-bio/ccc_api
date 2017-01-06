@@ -79,28 +79,14 @@ service FrameSpaceService {
     };
   }
 
-  // SearchDataFrame method receives a SearchDataFrameRequest and returns a SearchDataFrameResponse.
-  //
-  // The request allows a client to request dataframes based on keyspace ids, dataframe ids, or
-  // unit ids. One keyspace id must be provided in order to return a list of available dataframes. 
-  rpc SearchDataFrames(SearchDataFramesRequest) returns (SearchDataFramesResponse){
-    option (google.api.http) = {
-      post: "/dataframes/search"
-      body: "*"
-      additional_bindings: {
-        get: "/dataframes"
-      }
-    };
-  }
-
   // SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.
   //
   // The request allows a client to request a specific dataframe specified by the requried dataframe id.
   // Dimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. 
   // Pagination can occur by specifying pageStart and pageEnd based on users needs. 
-  rpc SliceDataFrame(SliceDataFrameRequest) returns (DataFrame){
+  rpc BuildDataFrame(BuildDataFrameRequest) returns (DataFrame){
     option (google.api.http) = {
-      post: "/dataframe/slice"
+      post: "/dataframe"
       body: "*"
       // additional_bindings: {
       //   get: "/dataframe/{dataframe_id}"

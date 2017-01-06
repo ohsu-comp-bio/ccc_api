@@ -105,43 +105,18 @@ message SearchUnitsResponse {
 // dataframe.contents['geneA']['sample1'] = 0
 message DataFrame {
   string id = 1;
-  Dimension major = 2;
-  Dimension minor = 3;
-  repeated Unit units = 4;
   map<string, string> metadata = 5;
   map<string, google.protobuf.Struct> contents = 6;
 }
 
-// DataFramesRequest is a POST to /dataframes/search 
-// Search criteria: search for dataframes from a given keyspace(s), 
-// filter by dataframe ids, and unit ids. At least one keyspaceId required.
-message SearchDataFramesRequest {
-  repeated string dataframe_ids = 1;
-  repeated string keyspace_ids = 2;
-  repeated string unit_ids = 3;
-  int32 page_size = 4;
-  string page_token = 5;
-}
-
-// SearchDataFramesResponse is returned from /dataframes/search
-// By default, the vector contents of a search dataframes response
-// are not returned. The contents should be returned from a dataframe slice.
-message SearchDataFramesResponse {
-  repeated DataFrame dataframes = 1;
-  string next_page_token = 2;
-}
-
-// SliceDataFrameRequest is a POST to /dataframe/slice 
+// BuildDataFrameRequest is a POST to /dataframe
 // Given an id return a slice based on the following dimensions.
 // Client creates a list of keys as a new dimension, if desired.
 // Subsetting / pagination can be performed by page_start and page_end.
-message SliceDataFrameRequest {
-  repeated Dimension new_major = 1;
-  repeated Dimension new_minor = 2;
-  int32 page_size = 3;
+message BuildDataFrameRequest {
+  repeated Dimension major = 1;
+  repeated Dimension minor = 2;
+  repeated Unit units = 3;
+  int32 page_size = 4;
 }
-
-// CreateDataFrameRequest is a POST to a /dataframe/
-
-
 
