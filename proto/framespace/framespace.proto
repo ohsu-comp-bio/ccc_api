@@ -64,7 +64,7 @@ message SearchKeySpacesResponse {
 // Dimension is a subset of keys from a KeySpace.
 // Actual subset is defined by the keys list. 
 // A key in a dimension must belong to the keyspace identifed by id.
-message Dimension {
+message KeySet {
   string keyspace_id = 1;
   repeated string keys = 2;
 }
@@ -114,8 +114,8 @@ message DataFrame {
 // Client creates a list of keys as a new dimension, if desired.
 // Subsetting / pagination can be performed by page_start and page_end.
 message BuildDataFrameRequest {
-  repeated Dimension major = 1;
-  repeated Dimension minor = 2;
+  repeated KeySet major = 1;
+  repeated KeySet minor = 2;
   repeated Unit units = 3;
   int32 page_size = 4;
 }

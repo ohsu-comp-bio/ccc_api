@@ -284,13 +284,13 @@
         "major": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/framespaceDimension"
+            "$ref": "#/definitions/framespaceKeySet"
           }
         },
         "minor": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/framespaceDimension"
+            "$ref": "#/definitions/framespaceKeySet"
           }
         },
         "units": {
@@ -329,7 +329,7 @@
       },
       "title": "Dataframe consists of two dimensions. \nunits is a flag specifying the value of a cell.\nAny restrictions on units should be defined in metadata.\nThe order of heterogenous vectors should correspond to order of\nunits in Unit list.\nThe struct object is protos equivalent of a python dict:\ndataframe.contents[contents_key][struct_key] = struct_value\nie. {'geneA': {'sample1': 0}}, would be populated as\ndataframe.contents['geneA']['sample1'] = 0"
     },
-    "framespaceDimension": {
+    "framespaceKeySet": {
       "type": "object",
       "properties": {
         "keyspace_id": {
