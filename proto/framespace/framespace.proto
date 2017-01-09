@@ -61,9 +61,9 @@ message SearchKeySpacesResponse {
   string next_page_token = 2;
 }
 
-// Dimension is a subset of keys from a KeySpace.
+// A keyset is a subset of keys from a KeySpace.
 // Actual subset is defined by the keys list. 
-// A key in a dimension must belong to the keyspace identifed by id.
+// A key in a set must belong to the keyspace identifed by id.
 message KeySet {
   string keyspace_id = 1;
   repeated string keys = 2;
@@ -94,25 +94,18 @@ message SearchUnitsResponse {
   string next_page_token = 2;
 }
 
-// Dataframe consists of two dimensions. 
-// units is a flag specifying the value of a cell.
-// Any restrictions on units should be defined in metadata.
-// The order of heterogenous vectors should correspond to order of
-// units in Unit list.
-// The struct object is protos equivalent of a python dict:
-// dataframe.contents[contents_key][struct_key] = struct_value
-// ie. {'geneA': {'sample1': 0}}, would be populated as
-// dataframe.contents['geneA']['sample1'] = 0
+// A DataFrame is a consolidation of vectors, which may belong to one
+// or more keyspaces. The DataFrame metadata holds the information on 
+// the keyspaces and units bound to the dataframe instance.
 message DataFrame {
   string id = 1;
-  map<string, string> metadata = 5;
-  map<string, google.protobuf.Struct> contents = 6;
+  map<string, string> metadata = 2;
+  map<string, google.protobuf.Struct> contents = 3;
 }
 
 // BuildDataFrameRequest is a POST to /dataframe
-// Given an id return a slice based on the following dimensions.
-// Client creates a list of keys as a new dimension, if desired.
-// Subsetting / pagination can be performed by page_start and page_end.
+// Return a set of vectors based on major keyspaces,
+// minor keyspaces, and units. 
 message BuildDataFrameRequest {
   repeated KeySet major = 1;
   repeated KeySet minor = 2;

@@ -90,8 +90,8 @@
     },
     "/dataframe": {
       "post": {
-        "summary": "SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.",
-        "description": "The request allows a client to request a specific dataframe specified by the requried dataframe id.\nDimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. \nPagination can occur by specifying pageStart and pageEnd based on users needs.",
+        "summary": "BuildDataFrame method recieves a BuildDataFrameRequest and returns a DataFrame object.",
+        "description": "The request allows a client to request a set of vectors designated to the provided keyset and units info.",
         "operationId": "BuildDataFrame",
         "responses": {
           "200": {
@@ -304,7 +304,7 @@
           "format": "int32"
         }
       },
-      "description": "BuildDataFrameRequest is a POST to /dataframe\nGiven an id return a slice based on the following dimensions.\nClient creates a list of keys as a new dimension, if desired.\nSubsetting / pagination can be performed by page_start and page_end."
+      "description": "BuildDataFrameRequest is a POST to /dataframe\nReturn a set of vectors based on major keyspaces,\nminor keyspaces, and units."
     },
     "framespaceDataFrame": {
       "type": "object",
@@ -327,7 +327,7 @@
           }
         }
       },
-      "title": "Dataframe consists of two dimensions. \nunits is a flag specifying the value of a cell.\nAny restrictions on units should be defined in metadata.\nThe order of heterogenous vectors should correspond to order of\nunits in Unit list.\nThe struct object is protos equivalent of a python dict:\ndataframe.contents[contents_key][struct_key] = struct_value\nie. {'geneA': {'sample1': 0}}, would be populated as\ndataframe.contents['geneA']['sample1'] = 0"
+      "description": "A DataFrame is a consolidation of vectors, which may belong to one\nor more keyspaces. The DataFrame metadata holds the information on \nthe keyspaces and units bound to the dataframe instance."
     },
     "framespaceKeySet": {
       "type": "object",
@@ -344,7 +344,7 @@
           }
         }
       },
-      "description": "Dimension is a subset of keys from a KeySpace.\nActual subset is defined by the keys list. \nA key in a dimension must belong to the keyspace identifed by id."
+      "description": "A keyset is a subset of keys from a KeySpace.\nActual subset is defined by the keys list. \nA key in a set must belong to the keyspace identifed by id."
     },
     "framespaceKeySpace": {
       "type": "object",

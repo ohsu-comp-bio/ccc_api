@@ -79,21 +79,13 @@ service FrameSpaceService {
     };
   }
 
-  // SliceDataFrame method recieves a SliceDataFrameRequest and returns a DataFrame object.
+  // BuildDataFrame method recieves a BuildDataFrameRequest and returns a DataFrame object.
   //
-  // The request allows a client to request a specific dataframe specified by the requried dataframe id.
-  // Dimensions can be specified to subset existing dimensions of a dataframe, or perform a transpose. 
-  // Pagination can occur by specifying pageStart and pageEnd based on users needs. 
+  // The request allows a client to request a set of vectors designated to the provided keyset and units info.
   rpc BuildDataFrame(BuildDataFrameRequest) returns (DataFrame){
     option (google.api.http) = {
       post: "/dataframe"
       body: "*"
-      // additional_bindings: {
-      //   get: "/dataframe/{dataframe_id}"
-      // }
-      // additional_bindings: {
-      //   get: "/dataframe/transpose/{dataframe_id}"
-      // }
     };
   }
 
